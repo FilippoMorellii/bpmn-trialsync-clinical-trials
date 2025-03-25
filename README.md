@@ -1,38 +1,23 @@
-# Babies360
-(this is a sample text. Revise according to your process)
-We want to model the service offered by a house renovation company to its clients. The house renovation company service relies on the services offered by a set of plumbers, electrician, constructors
-Based on the requests of the client (the householder) contact them and select the best ones
+# TrialSync
+This project aims to model the process of defining and managing a clinical trial, focusing on the roles of three main actors: the "Initiator" hospital, which proposes the research idea and sets the trial protocol; the "Collaborator" hospitals, which carry out the trial and collect data; and the "Ethical Committee," which is responsible for approving the protocol to ensure it meets ethical standards. As a group of two, we will consider a single Ethical Committee internal to the Initiator's hospital, streamlining the coordination and approval process for the clinical trial. This project, part of the PSD course at POLIMI, aims to design an efficient and structured system to manage the interactions between these actors and ensure smooth trial execution.
 
 ## Members:
-* member A (Firstname, Lastname, Person Code) 
-* member B (Firstname, Lastname, Person Code)
-* member C (Firstname, Lastname, Person Code)
+- Di Paola Gianluca (C.P. 10797584)
+- Morelli Filippo (C.P. XYZ)
 
 ## Choreographed process
-Short description of the choreographed process
-
-place here an image of the BPMN Choreography diagram
+TBA
+IMAGE
 
 
 ## Collaboration Diagram
-
-place here an image of the BPMN Collaboration diagram, where the only white box is for the Babies360, the others will be black-boxes
+TBA
+IMAGE
 
 ## Petri Net
-
-place here the image of the PetriNet corresponding to the Baby360 executable model
+place here the image of the PetriNet corresponding to the executable model
 
 # Third party services
-* baby sitters
-* party organizer
-* pedagogical consultant
-* ... (add if you need more)
-
-
+- ...
 ## Executable process
-
-place here an image of the BPMN diagram corresponding to the executable model of the Baby360 process
-
-
-
-
+place here an image of the BPMN diagram corresponding to the executable model of the process
