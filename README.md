@@ -5,14 +5,14 @@ This project aims to model the process of defining and managing a clinical trial
 - Di Paola Gianluca (C.P. 10797584)
 - Morelli Filippo (C.P. XYZ)
 
-## Choreographed process
-TBA
-IMAGE
+## Choreographed process [➔ PDF](/milestone-1/Coreography.pdf)
+TBA DESCRIPTION
+![choreography](/milestone-1/Coreography-img.png)
 
 
-## Collaboration Diagram
-TBA
-IMAGE
+## Collaboration Diagram [➔ PDF](/milestone-1/Collaboration.pdf)
+TBA DESCRIPTION
+![collaboration](/milestone-1/Collaboration-img.png)
 
 ## Petri Net
 place here the image of the PetriNet corresponding to the executable model
