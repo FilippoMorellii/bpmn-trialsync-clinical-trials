@@ -3,11 +3,11 @@ This project aims to model the process of defining and managing a clinical trial
 
 ## Members:
 - Di Paola Gianluca (C.P. 10797584)
-- Morelli Filippo (C.P. XYZ)
+- Morelli Filippo (C.P. 10799749)
 
-## Choreographed process [➔ PDF](/milestone-1/Coreography.pdf)
+## Choreographed process [➔ PDF](/milestone-1/Choreography.pdf)
 TBA DESCRIPTION
-![choreography](/milestone-1/Coreography-img.png)
+![choreography](/milestone-1/Choreography-img.png)
 
 
 ## Collaboration Diagram [➔ PDF](/milestone-1/Collaboration.pdf)
