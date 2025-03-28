@@ -1,6 +1,5 @@
 # TrialSync
-This project aims to model the process of defining and managing a clinical trial, focusing on the roles of three main actors: the "Initiator" hospital, which proposes the research idea and sets the trial protocol; the "Collaborator" hospitals, which carry out the trial and collect data; and the "Ethical Committee," which is responsible for approving the protocol to ensure it meets ethical standards. 
-As a group of two, we will consider a single Ethical Committee internal to the Initiator's hospital, streamlining the coordination and approval process for the clinical trial. 
+This project aims to model the process of defining and managing a clinical trial, focusing on the roles of three main actors: the "Initiator" hospital, which proposes the research idea and sets the trial protocol; the "Collaborator" hospitals, which carry out the trial and collect data; and the "Ethical Committee," which is responsible for approving the protocol to ensure it meets ethical standards. As a group of two, we will consider a single Ethical Committee internal to the Initiator's hospital, streamlining the coordination and approval process for the clinical trial. 
 This project, part of the PSD course at POLIMI, aims to design an efficient and structured system to manage the interactions between these actors and ensure smooth trial execution.
 
 ## Members:
@@ -8,10 +7,10 @@ This project, part of the PSD course at POLIMI, aims to design an efficient and 
 - Morelli Filippo (C.P. 10799749)
 
 ## Choreographed process [➔ PDF](/processes/PDF/Choreography.pdf), [➔ description](/processes/README.md)
-![choreography](/processes/IMG/Choreography-img.png)
+![choreography](/processes/IMG/Choreography-img.jpg)
 
 ## Collaboration Diagram [➔ PDF](/processes/PDF/Collaboration.pdf), [➔ description](/processes/README.md)
-![collaboration](/processes/IMG/Collaboration-img.png)
+![collaboration](/processes/IMG/Collaboration-img.jpg)
 
 ## Petri Net
 place here the image of the PetriNet corresponding to the executable model
