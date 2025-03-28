@@ -7,13 +7,10 @@ This project, part of the PSD course at POLIMI, aims to design an efficient and 
 - Di Paola Gianluca (C.P. 10797584)
 - Morelli Filippo (C.P. 10799749)
 
-## Choreographed process [➔ PDF](/processes/PDF/Choreography.pdf)
-TBA DESCRIPTION
+## Choreographed process [➔ PDF](/processes/PDF/Choreography.pdf), [➔ description](/processes/README.md)
 ![choreography](/processes/IMG/Choreography-img.png)
 
-
-## Collaboration Diagram [➔ PDF](/processes/PDF/Collaboration.pdf)
-TBA DESCRIPTION
+## Collaboration Diagram [➔ PDF](/processes/PDF/Collaboration.pdf), [➔ description](/processes/README.md)
 ![collaboration](/processes/IMG/Collaboration-img.png)
 
 ## Petri Net
