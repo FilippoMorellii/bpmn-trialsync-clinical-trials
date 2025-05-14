@@ -16,7 +16,8 @@ This project, part of the Process Service Design course at POLIMI, aims to desig
 ![petri-net](/processes/IMG/PetriNet-img.jpg)
 Please note that <ins>the process is sound</ins>; indeed there are no deadlocks, livelocks or any other issues that could affect the soundness property.
 
-## Third party services
+## Third party services [➔ description](/services/README.md)
+
 ### Protocol and Invitation Management [➔ OpenAPI](services/protocol-invitation/api-protocol-invitation.yaml), [➔ Server](services/protocol-invitation/src)
 Third party service used from the perspective of the initiator hospital, in order to manage the trial protocol and invites to collaborator hospitals.
 <div >
