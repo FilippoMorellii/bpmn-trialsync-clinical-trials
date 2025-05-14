@@ -1,0 +1,331 @@
+openapi: 3.0.3
+
+info:
+  title: Analysis and Pubblication Management Service
+  description: Servizio per gestire l'analisi dei dati delle pubblicazioni e le pubblicazioni stesse di studi clinici tra ospedali, dal punto di vista degli Initiator Hospital
+  version: 1.0.0
+
+servers:
+  - url: https://api.analysis-pubblication-ms.com/v1
+    description: Server principale
+
+security: # appplica globalmente a tutte le operazioni
+  - bearerAuth: []
+
+paths:
+  /analyses:
+    post:
+      summary: Richiesta per una nuova analisi
+      description: Il CRD (Clinical Research Department) richiede l'analisi i dati di uno o più esperimenti
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalysisRequest"
+      responses:
+        "202":
+          description: Richiesta di analisi accettata
+          content:
+            application/json:
+              schema:
+                # $ref: "#/components/schemas/Analysis"
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                required:
+                  - id
+        "400":
+          description: Richiesta non valida
+        "401":
+          description: Non autorizzato
+
+  /analyses/{analysisId}:
+    get:
+      summary: Recupera la specifica analisi
+      parameters:
+        - name: analysisId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Analisi trovata
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Analysis"
+        "404":
+          description: Analisi non trovata
+        "401":
+          description: Non autorizzato
+
+  /analyses/{analysisId}/cancel:
+    post:
+      summary: Richiesta di annullamento di un'analisi in corso
+      parameters:
+        - name: analysisId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Analisi annullata
+        "400":
+          description: Operazione non valida
+        "404":
+          description: Analisi non trovata
+        "401":
+          description: Non autorizzato
+
+  /publications:
+    post:
+      summary: Richeista di creazione di pubblicazione dello studio (trial)
+      description: Il CRD (Clinical Research Department) richiede la  pubblicazione dello studio, basata su un'analisi completata
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PublicationRequest"
+      responses:
+        "201":
+          description: Pubblicazione creata
+          content:
+            application/json:
+              schema:
+                # $ref: "#/components/schemas/Publication"
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                required:
+                  - id
+        "400":
+          description: Richiesta non valida
+        "401":
+          description: Non autorizzato
+
+  /publications/{publicationId}:
+    get:
+      summary: Recupera una pubblicazione specifica
+      parameters:
+        - name: publicationId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Pubblicazione trovata
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Publication"
+        "404":
+          description: Pubblicazione non trovata
+        "401":
+          description: Non autorizzato
+
+    put:
+      summary: Aggiorna una pubblicazione
+      parameters:
+        - name: publicationId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Publication"
+      responses:
+        "200":
+          description: Pubblicazione aggiornata
+        "400":
+          description: Richiesta non valida
+        "404":
+          description: Pubblicazione non trovata
+        "401":
+          description: Non autorizzato
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    AnalysisRequest:
+      type: object
+      properties:
+        trialId:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        experiments:
+          type: array
+          items:
+            type: string
+            format: uuid
+        analysisType:
+          type: string
+          enum: [STATISTICAL, COMPARATIVE, CORRELATIONAL, META_ANALYSIS]
+      required:
+        - trialId
+        - title
+        - experiments
+        - analysisType
+
+    Analysis:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        trialId:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum: [QUEUED, IN_PROGRESS, COMPLETED, FAILED]
+        result:
+          type: string
+          enum: [SCIENTIFICALLY_RELEVANT, INCONCLUSIVE, NEEDS_FURTHER_RESEARCH]
+        summary:
+          type: string
+      required:
+        - id
+        - trialId
+        - title
+        - status
+
+    PublicationRequest:
+      type: object
+      properties:
+        analysisId:
+          type: string
+          format: uuid
+        title:
+          type: string
+        abstract:
+          type: string
+        authors:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              institution:
+                type: string
+              role:
+                type: string
+        keywords:
+          type: array
+          items:
+            type: string
+        sections:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              content:
+                type: string
+        references:
+          type: array
+          items:
+            type: string
+        targetJournals:
+          type: array
+          items:
+            type: string
+      required:
+        - analysisId
+        - title
+        - abstract
+        - authors
+
+    Publication:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        analysisId:
+          type: string
+          format: uuid
+        trialId:
+          type: string
+          format: uuid
+        title:
+          type: string
+        abstract:
+          type: string
+        authors:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              institution:
+                type: string
+        keywords:
+          type: array
+          items:
+            type: string
+        sections:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              content:
+                type: string
+        references:
+          type: array
+          items:
+            type: string
+        publicationDate:
+          type: string
+          format: date-time
+        doi:
+          type: string
+          description: Digital Object Identifier
+        journal:
+          type: string
+        citations:
+          type: integer
+        version:
+          type: integer
+          default: 1
+      required:
+        - id
+        - analysisId
+        - title
+        - abstract
+        - authors
+        - status
