@@ -1,0 +1,347 @@
+openapi: 3.0.3
+
+info:
+  title: Protocol and Invitation Management Service
+  description: Servizio per gestire protocolli e inviti di studi clinici tra ospedali, dal punto di vista degli Initiator Hospital
+  version: 1.0.0
+  
+servers:
+  - url: https://api.protocolo-invitation-ms.com/v1
+    description: Server principale
+    
+security: # appplica globalmente a tutte le operazioni
+  - bearerAuth: []
+
+paths:
+  /protocols:
+    get:
+      summary: Recupera la lista dei protocolli
+      description: Recupera tutti i protocolli visibili all'utente autenticato
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              [
+                DRAFT,
+                SUBMITTED,
+                APPROVED,
+                REJECTED,
+                NEEDS_MODIFICATION,
+                CANCELLED,
+                ACTIVE,
+                COMPLETED,
+              ]
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+      responses:
+        "200":
+          description: Lista dei protocolli
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Protocol"
+                  pagination:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                      pages:
+                        type: integer
+                      current:
+                        type: integer
+        "401":
+          description: Non autorizzato
+
+    post:
+      summary: Richiesta per la creazione di un nuovo protocollo
+      description: Il CRD (Clinical Research Department) dell'Initiatior Hospital richiede la creazione di un nuovo protocollo di studio
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Protocol"
+      responses:
+        "201":
+          description: Protocollo creato con successo
+          content:
+            application/json:
+              schema:
+                # $ref: "#/components/schemas/Protocol"
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                required:
+                  - id
+        "400":
+          description: Dati non validi
+        "401":
+          description: Non autorizzato
+
+  /protocols/{protocolId}:
+    get:
+      summary: Recupera un protocollo specifico
+      parameters:
+        - name: protocolId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Protocollo trovato
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Protocol"
+        "404":
+          description: Protocollo non trovato
+        "401":
+          description: Non autorizzato
+
+  /hospitals:
+    get:
+      summary: Recupera la lista degli ospedali
+      description: Recupera tutti gli ospedali nel consorzio, così che il CRD (Clinical Research Department) possa fare gli inviti
+      responses:
+        "200":
+          description: Lista degli ospedali
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Hospital"
+        "401":
+          description: Non autorizzato
+
+  /protocols/{protocolId}/invitations:
+    post:
+      summary: Richiesta di creazione inviti a collaborare al trial
+      description: Il CRD (Clinical Research Department) richiede gli inviti per gli ospedali collaboratori (CH) 
+      parameters:
+        - name: protocolId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hospitalIds:
+                  type: array
+                  items:
+                    type: string
+                    format: uuid
+                responseDeadline:
+                  type: string
+                  format: date-time
+              required:
+                - hospitalIds
+      responses:
+        "201":
+          description: Inviti creati
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                required:
+                  - id
+        "400":
+          description: Dati non validi
+        "404":
+          description: Protocollo non trovato
+        "401":
+          description: Non autorizzato
+
+    get:
+      summary: Recupera gli inviti di un dato protocollo
+      parameters:
+        - name: protocolId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [SENT, ACCEPTED, REJECTED, MODIFICATIONS_REQUESTED]
+      responses:
+        "200":
+          description: Lista degli inviti
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Invitation"
+        "404":
+          description: Protocollo non trovato
+        "401":
+          description: Non autorizzato
+
+  /protocols/{protocolId}/finalize:
+    post:
+      summary: Richiesta di finalizzazione di un protocollo dalle modifiche
+      description: Il CRD (Clinical Research Department) richiede la finalizzazione del protocollo integrando le modifiche approvate dal EC (Ethical Committee)
+      parameters:
+        - name: protocolId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: objectives
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: methodology
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Protocollo finalizzato
+        "400":
+          description: Operazione non valida
+        "404":
+          description: Protocollo non trovato
+        "401":
+          description: Non autorizzato
+
+  /protocols/{protocolId}/cancel:
+    post:
+      summary: Richiesta di eliminazione di un protocollo
+      description: Il CRD (Clinical Research Department) richiede l'eliminazione di un protocollo a seguito dell'annullamento dello studio per insufficiente numero di ospedali aderenti
+      parameters:
+        - name: protocolId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Studio annullato
+        "400":
+          description: Operazione non valida
+        "404":
+          description: Protocollo non trovato
+        "401":
+          description: Non autorizzato
+
+components:
+  securitySchemes:
+    bearerAuth: 
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+
+
+  schemas:
+    Protocol:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        objectives:
+          type: string
+        methodology:
+          type: string
+        minParticipants:
+          type: integer
+        status:
+          type: string
+          enum:
+            [
+              DRAFT,
+              SUBMITTED,
+              APPROVED,
+              REJECTED,
+              NEEDS_MODIFICATION,
+              CANCELLED,
+              ACTIVE,
+              COMPLETED,
+            ]
+      required:
+        - title
+        - objectives
+        - methodology
+        - minParticipants
+
+    Hospital:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        contactEmail:
+          type: string
+          format: email
+      required:
+        - name
+        - type
+        - contactEmail
+
+    Invitation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        protocolId:
+          type: string
+          format: uuid
+        hospitalId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [SENT, ACCEPTED, REJECTED, MODIFICATIONS_REQUESTED]
+        sentAt:
+          type: string
+          format: date-time
+        responseDeadline:
+          type: string
+          format: date-time
+      required:
+        - protocolId
+        - hospitalId
