@@ -1,9 +1,15 @@
-# Important info
+# Third-part Services
 
-Report here the instructions on how to run the services after downloading from the repo
+We designed two REST services to support the Clinical Research Department (CRD) of the Initiator Hospital (IH) throughout the clinical trial lifecycle. They provide secure, asynchronous interfaces that align with the clinical trial business process.
+Characteristics:
+- **Security**: JWT authentication ensures only authorized CRD personnel can access these functions
+- **Asynchronous processing**: Long-running operations return immediate acknowledgments while processing continues in the background
+- **RESTful interfaces**: Standard HTTP methods and status codes 
 
-Also provide the postman collections to run the services
-* [how to create a collection](https://learning.postman.com/docs/getting-started/creating-the-first-collection/)
-* [how to export a collection](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/#exporting-collections)
+## Protocol and Invitation Management Service
 
+This service handles the early stages of clinical trials, allowing the CRD to define the experimental protocol and prepare the invites for the collaborating hospitals (CH). The CRD can create protocols with detailed specifications, browse available hospitals in the consortium, and prepare participation invitations. 
 
+## Analysis and Publication Management Service
+
+Once experiments are conducted, this service is for the CRD to request in-depth data analysis from multiple experiments, determining if the success of the trial; it also transform the study's findings into scientific publication, facilitating the creation of formal publications with all necessary data.
