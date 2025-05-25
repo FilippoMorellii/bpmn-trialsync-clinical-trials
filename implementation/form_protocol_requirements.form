@@ -1,0 +1,76 @@
+{
+  "components": [
+    {
+      "text": "# Protocol Requirements",
+      "type": "text",
+      "layout": {
+        "row": "Row_0vyeqyp",
+        "columns": null
+      },
+      "id": "Field_1w3ui55"
+    },
+    {
+      "label": "Title",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0s4jzex",
+        "columns": null
+      },
+      "id": "Field_0snjkbl",
+      "key": "form_protocol_requirements_TITLE",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Objectives",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_1pba8xh",
+        "columns": null
+      },
+      "id": "Field_1diq8be",
+      "key": "form_protocol_requirements_OBJECTIVES",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Methodology",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0t9tbhq",
+        "columns": null
+      },
+      "id": "Field_0o75qzi",
+      "key": "form_protocol_requirements_METHODOLOGY",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Minimum participants",
+      "type": "number",
+      "layout": {
+        "row": "Row_0t9tbhq",
+        "columns": null
+      },
+      "id": "Field_1djzvzn",
+      "key": "form_protocol_requirements_MINPARTECIPANTS",
+      "decimalDigits": 0,
+      "validate": {
+        "required": true,
+        "min": "1"
+      }
+    }
+  ],
+  "type": "default",
+  "id": "form_protocol_requirements",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.6.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.35.0"
+  },
+  "schemaVersion": 18
+}

@@ -1,0 +1,102 @@
+{
+  "components": [
+    {
+      "text": "# Analysis Request",
+      "type": "text",
+      "layout": {
+        "row": "Row_04ba8t4",
+        "columns": null
+      },
+      "id": "Field_0qg47fj"
+    },
+    {
+      "label": "Trial ID",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_10hrmy7",
+        "columns": null
+      },
+      "id": "Field_1odtbym",
+      "key": "form_analysis_request_TRIALID",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Title",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_10hrmy7",
+        "columns": null
+      },
+      "id": "Field_0425auk",
+      "key": "form_analysis_request_TITLE",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Desctiption",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_047nl1v",
+        "columns": null
+      },
+      "id": "Field_1ov1ahi",
+      "key": "form_analysis_request_DESCRIPTION"
+    },
+    {
+      "label": "Analysis type",
+      "values": [
+        {
+          "label": "Statistical",
+          "value": "STATISTICAL"
+        },
+        {
+          "label": "Comparative",
+          "value": "COMPARATIVE"
+        },
+        {
+          "label": "Correlational",
+          "value": "CORRELATIONAL"
+        },
+        {
+          "label": "Meta-analysis",
+          "value": "META_ANALYSIS"
+        }
+      ],
+      "type": "select",
+      "layout": {
+        "row": "Row_0jijnrm",
+        "columns": null
+      },
+      "id": "Field_1v4kl59",
+      "key": "form_analysis_request_ANALYSISTYPE",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Experiments (.xlsx file link)",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0jijnrm",
+        "columns": null
+      },
+      "id": "Field_1ewmico",
+      "key": "form_analysis_request_EXPERIMENTSLINK",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "form_analysis_request",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.6.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.35.0"
+  },
+  "schemaVersion": 18
+}

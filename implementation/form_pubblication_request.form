@@ -1,0 +1,32 @@
+{
+  "components": [
+    {
+      "text": "# Pubblication Request",
+      "type": "text",
+      "layout": {
+        "row": "Row_0u8ym0p",
+        "columns": 13
+      },
+      "id": "Field_1ssgwo0"
+    },
+    {
+      "label": "Text field",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0ztoozg",
+        "columns": null
+      },
+      "id": "Field_1c18yfk",
+      "key": "textfield_vj05v"
+    }
+  ],
+  "type": "default",
+  "id": "form_pubblication_request",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.6.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.35.0"
+  },
+  "schemaVersion": 18
+}

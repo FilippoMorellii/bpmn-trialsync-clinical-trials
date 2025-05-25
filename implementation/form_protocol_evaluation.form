@@ -1,0 +1,62 @@
+{
+  "components": [
+    {
+      "text": "# Protocol Evaluation",
+      "type": "text",
+      "layout": {
+        "row": "Row_0k68kof",
+        "columns": null
+      },
+      "id": "Field_0xiitk0"
+    },
+    {
+      "label": "Outcome",
+      "values": [
+        {
+          "label": "Accepted",
+          "value": "ACCEPTED"
+        },
+        {
+          "label": "Rejected",
+          "value": "REJECTED"
+        },
+        {
+          "label": "Modifications Requested",
+          "value": "MODIFICATIONS_REQUESTED"
+        }
+      ],
+      "type": "select",
+      "layout": {
+        "row": "Row_0p11f4a",
+        "columns": null
+      },
+      "id": "Field_13jr896",
+      "key": "form_protocol_evaluation_OUTCOME",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Required modifications",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0za9fd5",
+        "columns": null
+      },
+      "id": "Field_1fabah4",
+      "key": "form_protocol_evaluation_MODIFICATIONS",
+      "conditional": {
+        "hide": "=form_protocol_evaluation_OUTCOME != \"MODIFICATIONS_REQUESTED\""
+      }
+    }
+  ],
+  "type": "default",
+  "id": "form_protocol_evaluation",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.6.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.35.0"
+  },
+  "schemaVersion": 18
+}
