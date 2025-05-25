@@ -178,18 +178,27 @@ components:
           type: string
         description:
           type: string
-        experiments:
-          type: array
-          items:
-            type: string
-            format: uuid
+        # experiments:
+        #   type: array
+        #   items:
+        #     type: string
+        #     format: uuid
+        # experimentsFile:
+        #   type: string
+        #   format: binary
+        #   description: File Excel (.xlsx) contenente i dati degli esperimenti.
+        experimentsLink:
+          type: string
+          description: Link al file Excel (.xlsx) contenente i dati degli esperimenti.
         analysisType:
           type: string
           enum: [STATISTICAL, COMPARATIVE, CORRELATIONAL, META_ANALYSIS]
       required:
         - trialId
         - title
-        - experiments
+        # - experiments
+        # - experimentsFile
+        - experimentsLink
         - analysisType
 
     Analysis:
@@ -207,7 +216,7 @@ components:
           type: string
         status:
           type: string
-          enum: [QUEUED, IN_PROGRESS, COMPLETED, FAILED]
+          enum: [QUEUED, IN_PROGRESS, COMPLETED]
         result:
           type: string
           enum: [SCIENTIFICALLY_RELEVANT, INCONCLUSIVE, NEEDS_FURTHER_RESEARCH]
