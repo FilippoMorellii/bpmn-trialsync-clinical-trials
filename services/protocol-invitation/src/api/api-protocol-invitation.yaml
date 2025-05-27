@@ -4,11 +4,11 @@ info:
   title: Protocol and Invitation Management Service
   description: Servizio per gestire protocolli e inviti di studi clinici tra ospedali, dal punto di vista degli Initiator Hospital
   version: 1.0.0
-  
+
 servers:
   - url: https://api.protocolo-invitation-ms.com/v1
     description: Server principale
-    
+
 security: # appplica globalmente a tutte le operazioni
   - bearerAuth: []
 
@@ -75,7 +75,22 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Protocol"
+              # $ref: "#/components/schemas/Protocol"
+              type: object
+              properties:
+                title:
+                  type: string
+                objectives:
+                  type: string
+                methodology:
+                  type: string
+                minParticipants:
+                  type: integer
+              required:
+                - title
+                - objectives
+                - methodology
+                - minParticipants
       responses:
         "201":
           description: Protocollo creato con successo
@@ -117,26 +132,10 @@ paths:
         "401":
           description: Non autorizzato
 
-  /hospitals:
-    get:
-      summary: Recupera la lista degli ospedali
-      description: Recupera tutti gli ospedali nel consorzio, così che il CRD (Clinical Research Department) possa fare gli inviti
-      responses:
-        "200":
-          description: Lista degli ospedali
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Hospital"
-        "401":
-          description: Non autorizzato
-
   /protocols/{protocolId}/invitations:
     post:
       summary: Richiesta di creazione inviti a collaborare al trial
-      description: Il CRD (Clinical Research Department) richiede gli inviti per gli ospedali collaboratori (CH) 
+      description: Il CRD (Clinical Research Department) richiede gli inviti per gli ospedali collaboratori (CH)
       parameters:
         - name: protocolId
           in: path
@@ -151,16 +150,14 @@ paths:
             schema:
               type: object
               properties:
-                hospitalIds:
-                  type: array
-                  items:
-                    type: string
-                    format: uuid
+                congregationId:
+                  type: string
+                  format: uuid
                 responseDeadline:
                   type: string
                   format: date-time
               required:
-                - hospitalIds
+                - congregationId
       responses:
         "201":
           description: Inviti creati
@@ -220,18 +217,20 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: objectives
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: methodology
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                objectives:
+                  type: string
+                methodology:
+                  type: string
+              required:
+                - objectives
+                - methodology
       responses:
         "200":
           description: Protocollo finalizzato
@@ -243,7 +242,7 @@ paths:
           description: Non autorizzato
 
   /protocols/{protocolId}/cancel:
-    post:
+    delete:
       summary: Richiesta di eliminazione di un protocollo
       description: Il CRD (Clinical Research Department) richiede l'eliminazione di un protocollo a seguito dell'annullamento dello studio per insufficiente numero di ospedali aderenti
       parameters:
@@ -265,11 +264,10 @@ paths:
 
 components:
   securitySchemes:
-    bearerAuth: 
+    bearerAuth:
       type: http
       scheme: bearer
-      bearerFormat: JWT 
-
+      bearerFormat: JWT
 
   schemas:
     Protocol:
@@ -305,22 +303,6 @@ components:
         - methodology
         - minParticipants
 
-    Hospital:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        contactEmail:
-          type: string
-          format: email
-      required:
-        - name
-        - type
-        - contactEmail
-
     Invitation:
       type: object
       properties:
@@ -330,15 +312,9 @@ components:
         protocolId:
           type: string
           format: uuid
-        hospitalId:
+        congregationId:
           type: string
           format: uuid
-        status:
-          type: string
-          enum: [SENT, ACCEPTED, REJECTED, MODIFICATIONS_REQUESTED]
-        sentAt:
-          type: string
-          format: date-time
         responseDeadline:
           type: string
           format: date-time
