@@ -86,7 +86,7 @@ paths:
 
   /publications:
     post:
-      summary: Richeista di creazione di pubblicazione dello studio (trial)
+      summary: Richiesta di creazione di pubblicazione dello studio (trial)
       description: Il CRD (Clinical Research Department) richiede la  pubblicazione dello studio, basata su un'analisi completata
       requestBody:
         required: true
@@ -176,8 +176,10 @@ components:
           format: uuid
         title:
           type: string
+          format: uuid
         description:
           type: string
+          format: uuid
         # experiments:
         #   type: array
         #   items:
@@ -189,7 +191,8 @@ components:
         #   description: File Excel (.xlsx) contenente i dati degli esperimenti.
         experimentsLink:
           type: string
-          description: Link al file Excel (.xlsx) contenente i dati degli esperimenti.
+          description: Link to the Excel file (.xlsx) containing all experiments' data.
+          format: uuid
         analysisType:
           type: string
           enum: [STATISTICAL, COMPARATIVE, CORRELATIONAL, META_ANALYSIS]
@@ -239,37 +242,47 @@ components:
         abstract:
           type: string
         authors:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              institution:
-                type: string
-              role:
-                type: string
+          type: string
+          description: A comma-separated list of authors in a single string.
+          format: uuid
+          # items:
+          #  type: object
+          #  properties:
+          #    name:
+          #      type: string
+          #    institution:
+          #      type: string
+          #    role:
+          #      type: string
         keywords:
-          type: array
-          items:
-            type: string
-        sections:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-              content:
-                type: string
-        references:
-          type: array
-          items:
-            type: string
+          type: string
+          description: A comma-separated list of keywords in a single string.
+          format: uuid
+          # items:
+          #  type: string
+        sectionsLink:
+          type: string
+          description: Link to the Word file (.docx) containing title and content of all the sections.
+          format: uuid
+          # items:
+          #  type: object
+          #  properties:
+          #    title:
+          #      type: string
+          #    content:
+          #      type: string
+        referencesLink:
+          type: string
+          description: Link to the Excel file (.xlsx) containing all references.
+          format: uuid
+          # items:
+          #  type: string
         targetJournals:
-          type: array
-          items:
-            type: string
+          type: string
+          description: A comma-separated list of target journals in a single string.
+          format: uuid
+          # items:
+          #  type: string
       required:
         - analysisId
         - title

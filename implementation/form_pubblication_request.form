@@ -49,7 +49,7 @@
       }
     },
     {
-      "label": "Authors",
+      "label": "Authors (separated by commas)",
       "type": "textarea",
       "layout": {
         "row": "Row_0uumijb",
@@ -60,6 +60,46 @@
       "validate": {
         "required": true
       }
+    },
+    {
+      "label": "Keywords (separated by commas)",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_04kkrhi",
+        "columns": null
+      },
+      "id": "Field_0y9u7yl",
+      "key": "form_pubblication_request_KEYWORDS"
+    },
+    {
+      "label": "Sections (.docx file link)",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0fxfxj9",
+        "columns": null
+      },
+      "id": "Field_0w0nl4u",
+      "key": "form_pubblication_request_SECTIONSLINK"
+    },
+    {
+      "label": "References (.xlsx file link)",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0fxfxj9",
+        "columns": null
+      },
+      "id": "Field_13vw0mm",
+      "key": "form_pubblication_request_REFERENCESLINK"
+    },
+    {
+      "label": "Target Journals (separated by commas)",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_1i4jsew",
+        "columns": null
+      },
+      "id": "Field_12f346i",
+      "key": "form_pubblication_request_TARGETJOURNALS"
     }
   ],
   "type": "default",
