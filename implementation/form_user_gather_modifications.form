@@ -1,0 +1,48 @@
+{
+  "components": [
+    {
+      "text": "# Modifications form",
+      "type": "text",
+      "layout": {
+        "row": "Row_1icr72l",
+        "columns": null
+      },
+      "id": "Field_1kw0gp6"
+    },
+    {
+      "label": "Objectives",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_13a6hat",
+        "columns": null
+      },
+      "id": "Field_1856mve",
+      "key": "form_user_gather_modifications_OBJECTIVES",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Methodologies",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1fw1uc6",
+        "columns": null
+      },
+      "id": "Field_10ljx9y",
+      "key": "form_user_gather_modifications_METHODOLOGIES",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "form_user_gather_modifications",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.6.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.35.0"
+  },
+  "schemaVersion": 18
+}

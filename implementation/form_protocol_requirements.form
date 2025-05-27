@@ -62,6 +62,17 @@
         "required": true,
         "min": "1"
       }
+    },
+    {
+      "label": "Requested Modifications by the Ethical Committee",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0jdoex4",
+        "columns": null
+      },
+      "id": "Field_1lrdis8",
+      "key": "form_protocol_evaluation_MODIFICATIONS",
+      "readonly": "on"
     }
   ],
   "type": "default",

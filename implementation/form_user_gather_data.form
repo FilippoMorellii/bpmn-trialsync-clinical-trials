@@ -1,0 +1,35 @@
+{
+  "components": [
+    {
+      "text": "# Progress status",
+      "type": "text",
+      "layout": {
+        "row": "Row_0scw0el",
+        "columns": null
+      },
+      "id": "Field_0hevtcs"
+    },
+    {
+      "label": "Task completed",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_11yrow3",
+        "columns": null
+      },
+      "id": "Field_0gxa198",
+      "key": "form_user_gather_data_CHECKBOX",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "form_user_gather_data",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.6.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.35.0"
+  },
+  "schemaVersion": 18
+}

@@ -1,0 +1,45 @@
+{
+  "components": [
+    {
+      "text": "# Progress status",
+      "type": "text",
+      "layout": {
+        "row": "Row_1rd7ywn",
+        "columns": null
+      },
+      "id": "Field_1sbsih2"
+    },
+    {
+      "label": "Task completed",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_1mcbc2k",
+        "columns": null
+      },
+      "id": "Field_0uyc9b8",
+      "key": "form_user_merge_experiments_CHECKBOX",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Link to Excel file (.xlsx)",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1y7nadu",
+        "columns": null
+      },
+      "id": "Field_0572fed",
+      "key": "form_user_merge_experiments_LINK"
+    }
+  ],
+  "type": "default",
+  "id": "Form_0gg6sdj",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.6.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.35.0"
+  },
+  "schemaVersion": 18
+}

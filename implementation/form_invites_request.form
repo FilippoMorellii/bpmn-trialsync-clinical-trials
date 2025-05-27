@@ -1,0 +1,46 @@
+{
+  "components": [
+    {
+      "text": "# Invites request",
+      "type": "text",
+      "layout": {
+        "row": "Row_02julat",
+        "columns": null
+      },
+      "id": "Field_0scx4av"
+    },
+    {
+      "label": "Congregation ID",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1b5bii2",
+        "columns": null
+      },
+      "id": "Field_07fxz7v",
+      "key": "form_invites_request_CONGREGATIONID",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "subtype": "date",
+      "dateLabel": "Response deadline",
+      "type": "datetime",
+      "layout": {
+        "row": "Row_1b5bii2",
+        "columns": null
+      },
+      "id": "Field_15idpy3",
+      "key": "form_invites_request_DEADLINE"
+    }
+  ],
+  "type": "default",
+  "id": "form_invites_request",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.6.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.35.0"
+  },
+  "schemaVersion": 18
+}

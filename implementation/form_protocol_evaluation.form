@@ -47,7 +47,8 @@
       "key": "form_protocol_evaluation_MODIFICATIONS",
       "conditional": {
         "hide": "=form_protocol_evaluation_OUTCOME != \"MODIFICATIONS_REQUESTED\""
-      }
+      },
+      "readonly": false
     }
   ],
   "type": "default",

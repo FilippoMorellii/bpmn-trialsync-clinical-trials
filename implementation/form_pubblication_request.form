@@ -10,14 +10,56 @@
       "id": "Field_1ssgwo0"
     },
     {
-      "label": "Text field",
+      "label": "Analysis ID",
       "type": "textfield",
       "layout": {
         "row": "Row_0ztoozg",
         "columns": null
       },
       "id": "Field_1c18yfk",
-      "key": "textfield_vj05v"
+      "key": "form_pubblication_request_ANALYSISID",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Title",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0ztoozg",
+        "columns": null
+      },
+      "id": "Field_0epvcex",
+      "key": "form_pubblication_request_TITLE",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Abstract",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_1lsuzdz",
+        "columns": null
+      },
+      "id": "Field_1rwmby7",
+      "key": "form_pubblication_request_ABSTRACT",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Authors",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0uumijb",
+        "columns": null
+      },
+      "id": "Field_0ytgwpe",
+      "key": "form_pubblication_request_AUTHORS",
+      "validate": {
+        "required": true
+      }
     }
   ],
   "type": "default",
