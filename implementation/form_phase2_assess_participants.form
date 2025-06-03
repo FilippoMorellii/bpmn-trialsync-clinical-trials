@@ -1,0 +1,35 @@
+{
+  "components": [
+    {
+      "text": "# Participants assessment",
+      "type": "text",
+      "layout": {
+        "row": "Row_0nt4qm8",
+        "columns": null
+      },
+      "id": "Field_0vrjnk3"
+    },
+    {
+      "label": "Number of participants",
+      "type": "number",
+      "layout": {
+        "row": "Row_1rx3q16",
+        "columns": null
+      },
+      "id": "Field_1y0t8es",
+      "key": "form_phase2_assess_participants_NUMBER",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "form_phase2_assess_participants",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.6.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.35.0"
+  },
+  "schemaVersion": 18
+}
