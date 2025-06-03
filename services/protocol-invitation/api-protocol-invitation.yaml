@@ -9,9 +9,6 @@ servers:
   - url: https://api.protocolo-invitation-ms.com/v1
     description: Server principale
 
-security: # appplica globalmente a tutte le operazioni
-  - bearerAuth: []
-
 paths:
   /protocols:
     get:
@@ -263,12 +260,6 @@ paths:
           description: Non autorizzato
 
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-
   schemas:
     Protocol:
       type: object

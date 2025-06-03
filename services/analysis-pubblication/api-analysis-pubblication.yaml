@@ -9,9 +9,6 @@ servers:
   - url: https://api.analysis-pubblication-ms.com/v1
     description: Server principale
 
-security: # appplica globalmente a tutte le operazioni
-  - bearerAuth: []
-
 paths:
   /analyses:
     post:
@@ -161,12 +158,6 @@ paths:
           description: Non autorizzato
 
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-
   schemas:
     AnalysisRequest:
       type: object
@@ -199,8 +190,6 @@ components:
       required:
         - trialId
         - title
-        # - experiments
-        # - experimentsFile
         - experimentsLink
         - analysisType
 
@@ -245,44 +234,22 @@ components:
           type: string
           description: A comma-separated list of authors in a single string.
           format: uuid
-          # items:
-          #  type: object
-          #  properties:
-          #    name:
-          #      type: string
-          #    institution:
-          #      type: string
-          #    role:
-          #      type: string
         keywords:
           type: string
           description: A comma-separated list of keywords in a single string.
           format: uuid
-          # items:
-          #  type: string
         sectionsLink:
           type: string
           description: Link to the Word file (.docx) containing title and content of all the sections.
           format: uuid
-          # items:
-          #  type: object
-          #  properties:
-          #    title:
-          #      type: string
-          #    content:
-          #      type: string
         referencesLink:
           type: string
           description: Link to the Excel file (.xlsx) containing all references.
           format: uuid
-          # items:
-          #  type: string
         targetJournals:
           type: string
           description: A comma-separated list of target journals in a single string.
           format: uuid
-          # items:
-          #  type: string
       required:
         - analysisId
         - title
