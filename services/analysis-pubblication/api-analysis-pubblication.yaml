@@ -171,15 +171,6 @@ components:
         description:
           type: string
           format: uuid
-        # experiments:
-        #   type: array
-        #   items:
-        #     type: string
-        #     format: uuid
-        # experimentsFile:
-        #   type: string
-        #   format: binary
-        #   description: File Excel (.xlsx) contenente i dati degli esperimenti.
         experimentsLink:
           type: string
           description: Link to the Excel file (.xlsx) containing all experiments' data.
@@ -263,9 +254,6 @@ components:
           type: string
           format: uuid
         analysisId:
-          type: string
-          format: uuid
-        trialId:
           type: string
           format: uuid
         title:
