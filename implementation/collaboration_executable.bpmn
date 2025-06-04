@@ -31,8 +31,6 @@
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_09jguac</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0kh7sch</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1521w51</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_0x91buj</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0x2h6t9</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_07wsgt9</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0ufleh4</bpmn:flowNodeRef>
@@ -46,6 +44,8 @@
         <bpmn:flowNodeRef>Event_1s86l5a</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1mdomkp</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_10rprtj</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1521w51</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0x91buj</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="ethical-committee" name="Ethical Committee">
         <bpmn:flowNodeRef>Activity_0xjmfc4</bpmn:flowNodeRef>
@@ -172,12 +172,16 @@
     <bpmn:sendTask id="Activity_18yyryn" name="Trial cancelled">
       <bpmn:extensionElements>
         <zeebe:taskDefinition type="Message_trial_cancelled" />
+        <zeebe:ioMapping>
+          <zeebe:input source="=hospital_congregation_LIST" target="hospitalId" />
+          <zeebe:input source="=protocolID" target="protocol_id" />
+        </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1pvao5q</bpmn:incoming>
       <bpmn:outgoing>Flow_1oydxw3</bpmn:outgoing>
       <bpmn:multiInstanceLoopCharacteristics>
         <bpmn:extensionElements>
-          <zeebe:loopCharacteristics />
+          <zeebe:loopCharacteristics inputCollection="=hospital_congregation_LIST" />
         </bpmn:extensionElements>
       </bpmn:multiInstanceLoopCharacteristics>
     </bpmn:sendTask>
@@ -377,38 +381,6 @@
     </bpmn:userTask>
     <bpmn:dataObjectReference id="DataObjectReference_12hundr" name="protocol evaluation" dataObjectRef="DataObject_0ts7wzf" />
     <bpmn:dataObject id="DataObject_0ts7wzf" />
-    <bpmn:subProcess id="Activity_1521w51" name="Recruitment — Phase 1">
-      <bpmn:incoming>Flow_1rzbc0a</bpmn:incoming>
-      <bpmn:outgoing>Flow_0ve92l6</bpmn:outgoing>
-      <bpmn:multiInstanceLoopCharacteristics>
-        <bpmn:extensionElements>
-          <zeebe:loopCharacteristics inputCollection="=hospital_congregation_LIST" />
-        </bpmn:extensionElements>
-      </bpmn:multiInstanceLoopCharacteristics>
-      <bpmn:startEvent id="Event_1om3w50">
-        <bpmn:outgoing>Flow_0r9ah3e</bpmn:outgoing>
-      </bpmn:startEvent>
-      <bpmn:sequenceFlow id="Flow_0r9ah3e" sourceRef="Event_1om3w50" targetRef="Activity_1qikg5z" />
-      <bpmn:sequenceFlow id="Flow_08r9ysx" sourceRef="Activity_1qikg5z" targetRef="Activity_12g2oa1" />
-      <bpmn:endEvent id="Event_03vmif6">
-        <bpmn:incoming>Flow_11jx5tz</bpmn:incoming>
-      </bpmn:endEvent>
-      <bpmn:sequenceFlow id="Flow_11jx5tz" sourceRef="Activity_12g2oa1" targetRef="Event_03vmif6" />
-      <bpmn:serviceTask id="Activity_12g2oa1" name="Retrieve response">
-        <bpmn:extensionElements>
-          <zeebe:taskDefinition type="phase_1_RETRIEVE" />
-        </bpmn:extensionElements>
-        <bpmn:incoming>Flow_08r9ysx</bpmn:incoming>
-        <bpmn:outgoing>Flow_11jx5tz</bpmn:outgoing>
-      </bpmn:serviceTask>
-      <bpmn:sendTask id="Activity_1qikg5z" name="Send invite">
-        <bpmn:extensionElements>
-          <zeebe:taskDefinition type="phase_1_INVITE" />
-        </bpmn:extensionElements>
-        <bpmn:incoming>Flow_0r9ah3e</bpmn:incoming>
-        <bpmn:outgoing>Flow_08r9ysx</bpmn:outgoing>
-      </bpmn:sendTask>
-    </bpmn:subProcess>
     <bpmn:userTask id="Activity_09jguac" name="Prepare invites parameters">
       <bpmn:extensionElements>
         <zeebe:userTask />
@@ -501,13 +473,6 @@
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1tjijrl" sourceRef="Event_0x91buj" targetRef="Event_0x2h6t9" />
     <bpmn:sequenceFlow id="Flow_0ve92l6" sourceRef="Activity_1521w51" targetRef="Activity_0yf7uu6" />
-    <bpmn:boundaryEvent id="Event_0x91buj" name="1 month" attachedToRef="Activity_1521w51">
-      <bpmn:extensionElements />
-      <bpmn:outgoing>Flow_1tjijrl</bpmn:outgoing>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_18htf5b">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P1M</bpmn:timeDuration>
-      </bpmn:timerEventDefinition>
-    </bpmn:boundaryEvent>
     <bpmn:endEvent id="Event_0x2h6t9">
       <bpmn:incoming>Flow_1tjijrl</bpmn:incoming>
     </bpmn:endEvent>
@@ -533,6 +498,10 @@
       <bpmn:sendTask id="Activity_0mwql2f" name="Send final protocol">
         <bpmn:extensionElements>
           <zeebe:taskDefinition type="phase_2_INVITE" />
+          <zeebe:ioMapping>
+            <zeebe:input source="=hospital_congregation_LIST" target="hospitalId" />
+            <zeebe:input source="=protocolID" target="protocol_id" />
+          </zeebe:ioMapping>
         </bpmn:extensionElements>
         <bpmn:incoming>Flow_1bqsefq</bpmn:incoming>
         <bpmn:outgoing>Flow_1gngbm8</bpmn:outgoing>
@@ -540,6 +509,9 @@
       <bpmn:serviceTask id="Activity_0amrwvj" name="Retrieve response">
         <bpmn:extensionElements>
           <zeebe:taskDefinition type="phase_2_RETRIEVE" />
+          <zeebe:ioMapping>
+            <zeebe:input source="=hospital_congregation_LIST" target="hospitalId" />
+          </zeebe:ioMapping>
         </bpmn:extensionElements>
         <bpmn:incoming>Flow_1gngbm8</bpmn:incoming>
         <bpmn:outgoing>Flow_15abyq8</bpmn:outgoing>
@@ -700,10 +672,61 @@
       <bpmn:serviceTask id="Activity_0pisl0k" name="Retrieve experiment results">
         <bpmn:extensionElements>
           <zeebe:taskDefinition type="phase_3_RETRIEVE" />
+          <zeebe:ioMapping>
+            <zeebe:input source="=hospital_congregation_LIST" target="hospitalId" />
+            <zeebe:input source="=protocolID" target="procolol_id" />
+          </zeebe:ioMapping>
         </bpmn:extensionElements>
         <bpmn:incoming>Flow_0mopgwb</bpmn:incoming>
         <bpmn:outgoing>Flow_009z5ut</bpmn:outgoing>
       </bpmn:serviceTask>
+    </bpmn:subProcess>
+    <bpmn:boundaryEvent id="Event_0x91buj" name="1 month" attachedToRef="Activity_1521w51">
+      <bpmn:extensionElements />
+      <bpmn:outgoing>Flow_1tjijrl</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_18htf5b">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P1M</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:boundaryEvent>
+    <bpmn:subProcess id="Activity_1521w51" name="Recruitment — Phase 1">
+      <bpmn:incoming>Flow_1rzbc0a</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ve92l6</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics>
+        <bpmn:extensionElements>
+          <zeebe:loopCharacteristics inputCollection="=hospital_congregation_LIST" />
+        </bpmn:extensionElements>
+      </bpmn:multiInstanceLoopCharacteristics>
+      <bpmn:startEvent id="Event_1om3w50">
+        <bpmn:outgoing>Flow_0r9ah3e</bpmn:outgoing>
+      </bpmn:startEvent>
+      <bpmn:sequenceFlow id="Flow_0r9ah3e" sourceRef="Event_1om3w50" targetRef="Activity_1qikg5z" />
+      <bpmn:sequenceFlow id="Flow_08r9ysx" sourceRef="Activity_1qikg5z" targetRef="Activity_12g2oa1" />
+      <bpmn:endEvent id="Event_03vmif6">
+        <bpmn:incoming>Flow_11jx5tz</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="Flow_11jx5tz" sourceRef="Activity_12g2oa1" targetRef="Event_03vmif6" />
+      <bpmn:serviceTask id="Activity_12g2oa1" name="Retrieve response">
+        <bpmn:extensionElements>
+          <zeebe:taskDefinition type="phase_1_RETRIEVE" />
+          <zeebe:ioMapping>
+            <zeebe:input source="=hospital_congregation_LIST" target="hospitalId" />
+          </zeebe:ioMapping>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_08r9ysx</bpmn:incoming>
+        <bpmn:outgoing>Flow_11jx5tz</bpmn:outgoing>
+      </bpmn:serviceTask>
+      <bpmn:sendTask id="Activity_1qikg5z" name="Send invite">
+        <bpmn:extensionElements>
+          <zeebe:taskDefinition type="phase_1_INVITE" />
+          <zeebe:ioMapping>
+            <zeebe:input source="=hospital_congregation_LIST" target="hospitalId" />
+            <zeebe:input source="=protocolID" target="protocol_id" />
+            <zeebe:input source="=&#34;2025-07-25&#34;" target="deadline" />
+          </zeebe:ioMapping>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0r9ah3e</bpmn:incoming>
+        <bpmn:outgoing>Flow_08r9ysx</bpmn:outgoing>
+      </bpmn:sendTask>
     </bpmn:subProcess>
   </bpmn:process>
   <bpmn:message id="Message_32vq8b6" name="Messaggio_fase1_rifiutato">
@@ -742,12 +765,12 @@
         <dc:Bounds x="160" y="80" width="9620" height="1790" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_0xypp53_di" bpmnElement="clinical-research-department" isHorizontal="true">
-        <dc:Bounds x="190" y="80" width="9590" height="1070" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_13eex9k_di" bpmnElement="ethical-committee" isHorizontal="true">
         <dc:Bounds x="190" y="1150" width="9590" height="720" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0xypp53_di" bpmnElement="clinical-research-department" isHorizontal="true">
+        <dc:Bounds x="190" y="80" width="9590" height="1070" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0jz4rrd_di" bpmnElement="Activity_1fowtsb">
@@ -860,6 +883,34 @@
           <dc:Bounds x="958" y="1582" width="51" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1521w51_di" bpmnElement="Activity_1521w51" isExpanded="true">
+        <dc:Bounds x="2265" y="458" width="715" height="292" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1om3w50_di" bpmnElement="Event_1om3w50">
+        <dc:Bounds x="2352" y="572" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_03vmif6_di" bpmnElement="Event_03vmif6">
+        <dc:Bounds x="2852" y="572" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1bts7rk_di" bpmnElement="Activity_12g2oa1">
+        <dc:Bounds x="2660" y="550" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1i9vexw_di" bpmnElement="Activity_1qikg5z">
+        <dc:Bounds x="2470" y="550" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0r9ah3e_di" bpmnElement="Flow_0r9ah3e">
+        <di:waypoint x="2388" y="590" />
+        <di:waypoint x="2470" y="590" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08r9ysx_di" bpmnElement="Flow_08r9ysx">
+        <di:waypoint x="2570" y="590" />
+        <di:waypoint x="2660" y="590" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11jx5tz_di" bpmnElement="Flow_11jx5tz">
+        <di:waypoint x="2760" y="590" />
+        <di:waypoint x="2852" y="590" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Activity_1psr9ij_di" bpmnElement="Activity_09jguac">
         <dc:Bounds x="1790" y="550" width="100" height="80" />
         <bpmndi:BPMNLabel />
@@ -888,6 +939,36 @@
       <bpmndi:BPMNShape id="Event_0x2h6t9_di" bpmnElement="Event_0x2h6t9">
         <dc:Bounds x="3092" y="797" width="36" height="36" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_07wsgt9_di" bpmnElement="Activity_07wsgt9" isExpanded="true">
+        <dc:Bounds x="4550" y="451" width="820" height="277" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_040oq05_di" bpmnElement="Event_040oq05">
+        <dc:Bounds x="4682" y="565" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_02nh7mw_di" bpmnElement="Event_02nh7mw">
+        <dc:Bounds x="5212" y="565" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0oribvi_di" bpmnElement="Activity_0mwql2f">
+        <dc:Bounds x="4810" y="543" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1xsrn0g_di" bpmnElement="Activity_0amrwvj">
+        <dc:Bounds x="5010" y="543" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1bqsefq_di" bpmnElement="Flow_1bqsefq">
+        <di:waypoint x="4718" y="583" />
+        <di:waypoint x="4810" y="583" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1gngbm8_di" bpmnElement="Flow_1gngbm8">
+        <di:waypoint x="4910" y="583" />
+        <di:waypoint x="5010" y="583" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15abyq8_di" bpmnElement="Flow_15abyq8">
+        <di:waypoint x="5110" y="583" />
+        <di:waypoint x="5212" y="583" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_0ufleh4_di" bpmnElement="Event_0ufleh4">
         <dc:Bounds x="5452" y="785" width="36" height="36" />
       </bpmndi:BPMNShape>
@@ -950,64 +1031,6 @@
       <bpmndi:BPMNShape id="Event_1mdomkp_di" bpmnElement="Event_1mdomkp">
         <dc:Bounds x="9022" y="422" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1521w51_di" bpmnElement="Activity_1521w51" isExpanded="true">
-        <dc:Bounds x="2265" y="458" width="715" height="292" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1bts7rk_di" bpmnElement="Activity_12g2oa1">
-        <dc:Bounds x="2660" y="550" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_03vmif6_di" bpmnElement="Event_03vmif6">
-        <dc:Bounds x="2852" y="572" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1om3w50_di" bpmnElement="Event_1om3w50">
-        <dc:Bounds x="2352" y="572" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1i9vexw_di" bpmnElement="Activity_1qikg5z">
-        <dc:Bounds x="2470" y="550" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_0r9ah3e_di" bpmnElement="Flow_0r9ah3e">
-        <di:waypoint x="2388" y="590" />
-        <di:waypoint x="2470" y="590" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_08r9ysx_di" bpmnElement="Flow_08r9ysx">
-        <di:waypoint x="2570" y="590" />
-        <di:waypoint x="2660" y="590" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_11jx5tz_di" bpmnElement="Flow_11jx5tz">
-        <di:waypoint x="2760" y="590" />
-        <di:waypoint x="2852" y="590" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Activity_07wsgt9_di" bpmnElement="Activity_07wsgt9" isExpanded="true">
-        <dc:Bounds x="4550" y="451" width="820" height="277" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_02nh7mw_di" bpmnElement="Event_02nh7mw">
-        <dc:Bounds x="5212" y="565" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_040oq05_di" bpmnElement="Event_040oq05">
-        <dc:Bounds x="4682" y="565" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0oribvi_di" bpmnElement="Activity_0mwql2f">
-        <dc:Bounds x="4810" y="543" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1xsrn0g_di" bpmnElement="Activity_0amrwvj">
-        <dc:Bounds x="5010" y="543" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_15abyq8_di" bpmnElement="Flow_15abyq8">
-        <di:waypoint x="5110" y="583" />
-        <di:waypoint x="5212" y="583" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1bqsefq_di" bpmnElement="Flow_1bqsefq">
-        <di:waypoint x="4718" y="583" />
-        <di:waypoint x="4810" y="583" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1gngbm8_di" bpmnElement="Flow_1gngbm8">
-        <di:waypoint x="4910" y="583" />
-        <di:waypoint x="5010" y="583" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Activity_10rprtj_di" bpmnElement="Activity_10rprtj" isExpanded="true">
         <dc:Bounds x="6860" y="270" width="520" height="230" />
         <bpmndi:BPMNLabel />
@@ -1030,16 +1053,16 @@
         <di:waypoint x="7170" y="380" />
         <di:waypoint x="7262" y="380" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Event_0x91buj_di" bpmnElement="Event_0x91buj">
-        <dc:Bounds x="2962" y="732" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3010" y="748" width="40" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1jsfwl6_di" bpmnElement="Event_1jsfwl6">
         <dc:Bounds x="5352" y="710" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="5402" y="726" width="36" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0x91buj_di" bpmnElement="Event_0x91buj">
+        <dc:Bounds x="2962" y="732" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3010" y="748" width="40" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1bfz4hw_di" bpmnElement="Flow_1bfz4hw">
@@ -1308,13 +1331,13 @@
         <di:waypoint x="8058" y="499" />
         <di:waypoint x="8205" y="568" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_06juztm_di" bpmnElement="DataOutputAssociation_06juztm">
-        <di:waypoint x="960" y="550" />
-        <di:waypoint x="960" y="500" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_04prhd8_di" bpmnElement="DataInputAssociation_04prhd8">
         <di:waypoint x="788" y="483" />
         <di:waypoint x="938" y="550" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_06juztm_di" bpmnElement="DataOutputAssociation_06juztm">
+        <di:waypoint x="960" y="550" />
+        <di:waypoint x="960" y="500" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_1clzy4f_di" bpmnElement="DataInputAssociation_1clzy4f">
         <di:waypoint x="974" y="1525" />
