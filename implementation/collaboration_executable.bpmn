@@ -62,7 +62,7 @@
         <zeebe:ioMapping>
           <zeebe:input source="noAuth" target="authentication.type" />
           <zeebe:input source="DELETE" target="method" />
-          <zeebe:input source="=&#34;https://localhost/v1/protocols/&#34; + protocolID + &#34;/cancel&#34;" target="url" />
+          <zeebe:input source="=&#34;http://localhost:8181/v1/protocols/&#34; + protocolID + &#34;/cancel&#34;" target="url" />
           <zeebe:input source="=false" target="storeResponse" />
           <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
           <zeebe:input source="=20" target="readTimeoutInSeconds" />
@@ -143,7 +143,7 @@
         <zeebe:ioMapping>
           <zeebe:input source="noAuth" target="authentication.type" />
           <zeebe:input source="POST" target="method" />
-          <zeebe:input source="=&#34;https://localhost/v1/protocols/&#34; + protocolID + &#34;/invitations&#34;" target="url" />
+          <zeebe:input source="=&#34;http://localhost:8181/v1/protocols/&#34; + protocolID + &#34;/invitations&#34;" target="url" />
           <zeebe:input source="=false" target="storeResponse" />
           <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
           <zeebe:input source="=20" target="readTimeoutInSeconds" />
@@ -210,7 +210,7 @@
         <zeebe:ioMapping>
           <zeebe:input source="noAuth" target="authentication.type" />
           <zeebe:input source="POST" target="method" />
-          <zeebe:input source="=&#34;https://localhost/v1/analyses/&#34;" target="url" />
+          <zeebe:input source="=&#34;http://localhost:8282/v1/analyses/&#34;" target="url" />
           <zeebe:input source="=false" target="storeResponse" />
           <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
           <zeebe:input source="=20" target="readTimeoutInSeconds" />
@@ -244,7 +244,7 @@
         <zeebe:ioMapping>
           <zeebe:input source="noAuth" target="authentication.type" />
           <zeebe:input source="GET" target="method" />
-          <zeebe:input source="=&#34;https://localhost/v1/analyses/&#34; + analysisID" target="url" />
+          <zeebe:input source="=&#34;http://localhost:8282/v1/analyses/&#34; + analysisID" target="url" />
           <zeebe:input source="=false" target="storeResponse" />
           <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
           <zeebe:input source="=20" target="readTimeoutInSeconds" />
@@ -280,7 +280,7 @@
         <zeebe:ioMapping type="io.camunda:http-json:1">
           <zeebe:input source="noAuth" target="authentication.type" />
           <zeebe:input source="POST" target="method" />
-          <zeebe:input source="https://localhost/v1/protocols" target="url" />
+          <zeebe:input source="http://localhost:8181/v1/protocols" target="url" />
           <zeebe:input source="=false" target="storeResponse" />
           <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
           <zeebe:input source="=20" target="readTimeoutInSeconds" />
@@ -330,11 +330,7 @@
       <bpmn:outgoing>Flow_0996x8u</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:startEvent id="StartEvent_1">
-      <bpmn:extensionElements>
-        <zeebe:ioMapping>
-          <zeebe:output target="OutputVariable_1l990um" />
-        </zeebe:ioMapping>
-      </bpmn:extensionElements>
+      <bpmn:extensionElements />
       <bpmn:outgoing>Flow_1ilkejj</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:serviceTask id="Activity_0xjmfc4" name="Delete protocol" zeebe:modelerTemplate="io.camunda.connectors.HttpJson.v2" zeebe:modelerTemplateVersion="11" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE3LjAzMzUgOC45OTk5N0MxNy4wMzM1IDEzLjQ0NzUgMTMuNDI4MSAxNy4wNTI5IDguOTgwNjUgMTcuMDUyOUM0LjUzMzE2IDE3LjA1MjkgMC45Mjc3NjUgMTMuNDQ3NSAwLjkyNzc2NSA4Ljk5OTk3QzAuOTI3NzY1IDQuNTUyNDggNC41MzMxNiAwLjk0NzA4MyA4Ljk4MDY1IDAuOTQ3MDgzQzEzLjQyODEgMC45NDcwODMgMTcuMDMzNSA0LjU1MjQ4IDE3LjAzMzUgOC45OTk5N1oiIGZpbGw9IiM1MDU1NjIiLz4KPHBhdGggZD0iTTQuOTMxMjYgMTQuMTU3MUw2Ljc4MTA2IDMuNzE0NzFIMTAuMTM3NUMxMS4xOTE3IDMuNzE0NzEgMTEuOTgyNCAzLjk4MzIzIDEyLjUwOTUgNC41MjAyN0MxMy4wNDY1IDUuMDQ3MzYgMTMuMzE1IDUuNzMzNTggMTMuMzE1IDYuNTc4OTJDMTMuMzE1IDcuNDQ0MTQgMTMuMDcxNCA4LjE1NTIyIDEyLjU4NDEgOC43MTIxNUMxMi4xMDY3IDkuMjU5MTMgMTEuNDU1MyA5LjYzNzA1IDEwLjYyOTggOS44NDU5TDEyLjA2MTkgMTQuMTU3MUgxMC4zMzE1TDkuMDMzNjQgMTAuMDI0OUg3LjI0MzUxTDYuNTEyNTQgMTQuMTU3MUg0LjkzMTI2Wk03LjQ5NzExIDguNTkyODFIOS4yNDI0OEM5Ljk5ODMyIDguNTkyODEgMTAuNTkwMSA4LjQyMzc0IDExLjAxNzcgOC4wODU2MUMxMS40NTUzIDcuNzM3NTMgMTEuNjc0MSA3LjI2NTEzIDExLjY3NDEgNi42Njg0MkMxMS42NzQxIDYuMTkxMDYgMTEuNTI0OSA1LjgxODExIDExLjIyNjUgNS41NDk1OUMxMC45MjgyIDUuMjcxMTMgMTAuNDU1OCA1LjEzMTkgOS44MDkzNiA1LjEzMTlIOC4xMDg3NEw3LjQ5NzExIDguNTkyODFaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K">
@@ -343,7 +339,7 @@
         <zeebe:ioMapping>
           <zeebe:input source="noAuth" target="authentication.type" />
           <zeebe:input source="DELETE" target="method" />
-          <zeebe:input source="=&#34;https://localhost/v1/protocols/&#34; + protocolID + &#34;/cancel&#34;" target="url" />
+          <zeebe:input source="=&#34;http://localhost:8181/v1/protocols/&#34; + protocolID + &#34;/cancel&#34;" target="url" />
           <zeebe:input source="=false" target="storeResponse" />
           <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
           <zeebe:input source="=20" target="readTimeoutInSeconds" />
@@ -462,7 +458,9 @@
     <bpmn:sequenceFlow id="Flow_09vb7wq" name="modification requested" sourceRef="Gateway_01eau0p" targetRef="Gateway_0g80yve">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=form_protocol_evaluation_OUTCOME = "MODIFICATIONS_REQUESTED"</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1ilkejj" sourceRef="StartEvent_1" targetRef="Gateway_0g80yve" />
+    <bpmn:sequenceFlow id="Flow_1ilkejj" sourceRef="StartEvent_1" targetRef="Gateway_0g80yve">
+      <bpmn:extensionElements />
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0lvo5ot" name="rejected" sourceRef="Gateway_01eau0p" targetRef="Activity_0xjmfc4">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=form_protocol_evaluation_OUTCOME = "REJECTED"</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -565,7 +563,7 @@
         <zeebe:ioMapping>
           <zeebe:input source="noAuth" target="authentication.type" />
           <zeebe:input source="POST" target="method" />
-          <zeebe:input source="=&#34;https://localhost/v1/protocols/&#34; + protocolID + &#34;/finalize&#34;" target="url" />
+          <zeebe:input source="=&#34;http://localhost:8181/v1/protocols/&#34; + protocolID + &#34;/finalize&#34;" target="url" />
           <zeebe:input source="=false" target="storeResponse" />
           <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
           <zeebe:input source="=20" target="readTimeoutInSeconds" />
@@ -624,7 +622,7 @@
         <zeebe:ioMapping>
           <zeebe:input source="noAuth" target="authentication.type" />
           <zeebe:input source="POST" target="method" />
-          <zeebe:input source="https://localhost/v1/pubblications" target="url" />
+          <zeebe:input source="http://localhost:8282/v1/pubblications" target="url" />
           <zeebe:input source="=false" target="storeResponse" />
           <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
           <zeebe:input source="=20" target="readTimeoutInSeconds" />
@@ -883,34 +881,6 @@
           <dc:Bounds x="958" y="1582" width="51" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1521w51_di" bpmnElement="Activity_1521w51" isExpanded="true">
-        <dc:Bounds x="2265" y="458" width="715" height="292" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1om3w50_di" bpmnElement="Event_1om3w50">
-        <dc:Bounds x="2352" y="572" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_03vmif6_di" bpmnElement="Event_03vmif6">
-        <dc:Bounds x="2852" y="572" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1bts7rk_di" bpmnElement="Activity_12g2oa1">
-        <dc:Bounds x="2660" y="550" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1i9vexw_di" bpmnElement="Activity_1qikg5z">
-        <dc:Bounds x="2470" y="550" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_0r9ah3e_di" bpmnElement="Flow_0r9ah3e">
-        <di:waypoint x="2388" y="590" />
-        <di:waypoint x="2470" y="590" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_08r9ysx_di" bpmnElement="Flow_08r9ysx">
-        <di:waypoint x="2570" y="590" />
-        <di:waypoint x="2660" y="590" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_11jx5tz_di" bpmnElement="Flow_11jx5tz">
-        <di:waypoint x="2760" y="590" />
-        <di:waypoint x="2852" y="590" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Activity_1psr9ij_di" bpmnElement="Activity_09jguac">
         <dc:Bounds x="1790" y="550" width="100" height="80" />
         <bpmndi:BPMNLabel />
@@ -1053,16 +1023,44 @@
         <di:waypoint x="7170" y="380" />
         <di:waypoint x="7262" y="380" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Event_1jsfwl6_di" bpmnElement="Event_1jsfwl6">
-        <dc:Bounds x="5352" y="710" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="5402" y="726" width="36" height="14" />
-        </bpmndi:BPMNLabel>
+      <bpmndi:BPMNShape id="Activity_1521w51_di" bpmnElement="Activity_1521w51" isExpanded="true">
+        <dc:Bounds x="2265" y="458" width="715" height="292" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1om3w50_di" bpmnElement="Event_1om3w50">
+        <dc:Bounds x="2352" y="572" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_03vmif6_di" bpmnElement="Event_03vmif6">
+        <dc:Bounds x="2852" y="572" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1bts7rk_di" bpmnElement="Activity_12g2oa1">
+        <dc:Bounds x="2660" y="550" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1i9vexw_di" bpmnElement="Activity_1qikg5z">
+        <dc:Bounds x="2470" y="550" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0r9ah3e_di" bpmnElement="Flow_0r9ah3e">
+        <di:waypoint x="2388" y="590" />
+        <di:waypoint x="2470" y="590" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08r9ysx_di" bpmnElement="Flow_08r9ysx">
+        <di:waypoint x="2570" y="590" />
+        <di:waypoint x="2660" y="590" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11jx5tz_di" bpmnElement="Flow_11jx5tz">
+        <di:waypoint x="2760" y="590" />
+        <di:waypoint x="2852" y="590" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_0x91buj_di" bpmnElement="Event_0x91buj">
         <dc:Bounds x="2962" y="732" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="3010" y="748" width="40" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1jsfwl6_di" bpmnElement="Event_1jsfwl6">
+        <dc:Bounds x="5352" y="710" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="5402" y="726" width="36" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1bfz4hw_di" bpmnElement="Flow_1bfz4hw">
