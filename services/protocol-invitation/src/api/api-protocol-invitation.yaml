@@ -6,11 +6,10 @@ info:
   version: 1.0.0
 
 servers:
-  - url: https://api.protocolo-invitation-ms.com/v1
+  - url: https://localhost:8181/v1
     description: Server principale
 
-security: # appplica globalmente a tutte le operazioni
-  - bearerAuth: []
+security: []
 
 paths:
   /protocols:
@@ -263,12 +262,6 @@ paths:
           description: Non autorizzato
 
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-
   schemas:
     Protocol:
       type: object

@@ -6,8 +6,10 @@ info:
   version: 1.0.0
 
 servers:
-  - url: https://api.protocolo-invitation-ms.com/v1
+  - url: https://localhost:8181/v1
     description: Server principale
+
+security: []
 
 paths:
   /protocols:

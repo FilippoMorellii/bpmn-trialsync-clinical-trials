@@ -3,18 +3,11 @@ const express = require("express");
 const { initialize } = require('@oas-tools/core');
 
 
-const serverPort = 8080;
+const serverPort = 8282;
 const app = express();
 app.use(express.json({limit: '50mb'}));
 
-const config = {middleware: {
-        security: {
-            auth: {
-                bearerAuth: () => { /* no-op */ },
-            }
-        }
-    }
-}
+const config = {}
 
 
 initialize(app, config).then(() => {

@@ -6,11 +6,10 @@ info:
   version: 1.0.0
 
 servers:
-  - url: https://api.analysis-pubblication-ms.com/v1
+  - url: https://localhost:8282/v1
     description: Server principale
 
-security: # appplica globalmente a tutte le operazioni
-  - bearerAuth: []
+security: []
 
 paths:
   /analyses:
@@ -86,7 +85,7 @@ paths:
 
   /publications:
     post:
-      summary: Richeista di creazione di pubblicazione dello studio (trial)
+      summary: Richiesta di creazione di pubblicazione dello studio (trial)
       description: Il CRD (Clinical Research Department) richiede la  pubblicazione dello studio, basata su un'analisi completata
       requestBody:
         required: true
@@ -161,12 +160,6 @@ paths:
           description: Non autorizzato
 
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-
   schemas:
     AnalysisRequest:
       type: object
@@ -176,28 +169,20 @@ components:
           format: uuid
         title:
           type: string
+          format: uuid
         description:
           type: string
-        # experiments:
-        #   type: array
-        #   items:
-        #     type: string
-        #     format: uuid
-        # experimentsFile:
-        #   type: string
-        #   format: binary
-        #   description: File Excel (.xlsx) contenente i dati degli esperimenti.
+          format: uuid
         experimentsLink:
           type: string
-          description: Link al file Excel (.xlsx) contenente i dati degli esperimenti.
+          description: Link to the Excel file (.xlsx) containing all experiments' data.
+          format: uuid
         analysisType:
           type: string
           enum: [STATISTICAL, COMPARATIVE, CORRELATIONAL, META_ANALYSIS]
       required:
         - trialId
         - title
-        # - experiments
-        # - experimentsFile
         - experimentsLink
         - analysisType
 
@@ -239,37 +224,25 @@ components:
         abstract:
           type: string
         authors:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              institution:
-                type: string
-              role:
-                type: string
+          type: string
+          description: A comma-separated list of authors in a single string.
+          format: uuid
         keywords:
-          type: array
-          items:
-            type: string
-        sections:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-              content:
-                type: string
-        references:
-          type: array
-          items:
-            type: string
+          type: string
+          description: A comma-separated list of keywords in a single string.
+          format: uuid
+        sectionsLink:
+          type: string
+          description: Link to the Word file (.docx) containing title and content of all the sections.
+          format: uuid
+        referencesLink:
+          type: string
+          description: Link to the Excel file (.xlsx) containing all references.
+          format: uuid
         targetJournals:
-          type: array
-          items:
-            type: string
+          type: string
+          description: A comma-separated list of target journals in a single string.
+          format: uuid
       required:
         - analysisId
         - title
@@ -283,9 +256,6 @@ components:
           type: string
           format: uuid
         analysisId:
-          type: string
-          format: uuid
-        trialId:
           type: string
           format: uuid
         title:
