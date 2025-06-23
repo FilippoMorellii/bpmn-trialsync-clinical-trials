@@ -6,10 +6,16 @@ This project, part of the Process Service Design course at POLIMI, aims to desig
 - **<mark>Di Paola Gianluca (C.P. 10797584)</mark>**
 - **<mark>Morelli Filippo (C.P. 10799749)</mark>**
 
-# Milestone 1: Choreography, Collaboration, Petri net
+# Milestone 1: Choreography, Collaboration
 The BPMN process we have structured involves the management of an experimental study in which two main actors are involved: the **Initiator Hospital (IH)** and the **Collaborator Hospital (CH)**, with the Initiator further divided into two departments: the **Clinical Research Department (CRD)** and the **Ethical Committee (EC)**.
 
-### **Overall Process Structure**
+## Choreographed process [➔ PDF](/processes/PDF/Choreography.pdf)
+![choreography](/processes/IMG/Choreography-img.jpg)
+
+## Collaboration Diagram [➔ PDF](/processes/PDF/Collaboration.pdf)
+![collaboration](/processes/IMG/Collaboration-img.jpg)
+
+## **Overall Process Structure**
 
 1. **Phase 1 – Proposal and Evaluation**
     - The **CRD** defines the experimental protocol (objectives, methodology, minimum number of participants, etc.) and submits it to the **EC**.
@@ -34,36 +40,26 @@ The BPMN process we have structured involves the management of an experimental s
         - If the study is scientifically relevant, the **CRD** prepares the final report and publishes it. The process ends for all.
         - If the study is inconclusive, the process ends for all.
 
-### **Key Features of the Process**
+### **Key Features of the Process and Important Assumptions**
 
 - In Phase 2, the sending of invitations and managing the responses from the **CH** are treated as subprocesses, using timers to wait for responses and multi-instance mechanisms (to handle multiple **CH** simultaneously).
 - In some phases, such as Phase 3, data is collected from multiple **CH** simultaneously, so the flow must remain parallel until all tasks are completed.
-
-### **Important Assumptions**
-
 - The **CH** are always able to recruit patients for the experiment.
 - The **CH** do not participate in the final approval of the study, which depends solely on the **CRD**.
 
-## Choreographed process [➔ PDF](/processes/PDF/Choreography.pdf)
-![choreography](/processes/IMG/Choreography-img.jpg)
-
-## Collaboration Diagram [➔ PDF](/processes/PDF/Collaboration.pdf)
-![collaboration](/processes/IMG/Collaboration-img.jpg)
+# Milestone 2: Petri net, Third party services
 
 ## Petri Net [➔ PDF](/processes/PDF/PetriNet.pdf)
 ![petri-net](/processes/IMG/PetriNet-img.jpg)
 > [!NOTE]
 > Please note that <ins>the process is sound</ins>; indeed there are no deadlocks, livelocks or any other issues that could affect the soundness property.
 
-
-# Milestone 2: Third party services 
+## REST
 
 We designed two REST services to support the Clinical Research Department (CRD) of the Initiator Hospital (IH) throughout the clinical trial lifecycle. They provide asynchronous interfaces that align with the clinical trial business process.
 Characteristics:
 - **RESTful interfaces**: Standard HTTP methods and status codes 
 - **Asynchronous processing**: Long-running operations return immediate acknowledgments while processing continues in the background
-
-
 
 ## Protocol and Invitation Management [➔ OpenAPI](services/protocol-invitation/api-protocol-invitation.yaml), [➔ Server](services/protocol-invitation/src)
 
