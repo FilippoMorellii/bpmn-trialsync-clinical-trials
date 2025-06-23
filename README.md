@@ -2,7 +2,7 @@
 This project aims to model the process of defining and managing a clinical trial, focusing on the roles of three main actors: the "Initiator" hospital, which proposes the research idea and sets the trial protocol; the "Collaborator" hospitals, which carry out the trial and collect data; and the "Ethical Committee," which is responsible for approving the protocol to ensure it meets ethical standards. As a group of two, we will consider a single Ethical Committee internal to the Initiator's hospital, streamlining the coordination and approval process for the clinical trial. 
 This project, part of the Process Service Design course at POLIMI, aims to design an efficient and structured system to manage the interactions between these actors and ensure smooth trial execution.
 
-## Members:
+## Members
 - **<mark>Di Paola Gianluca (C.P. 10797584)</mark>**
 - **<mark>Morelli Filippo (C.P. 10799749)</mark>**
 
@@ -52,7 +52,8 @@ The BPMN process we have structured involves the management of an experimental s
 
 ## Petri Net [➔ PDF](/processes/PDF/PetriNet.pdf)
 ![petri-net](/processes/IMG/PetriNet-img.jpg)
-Please note that <ins>the process is sound</ins>; indeed there are no deadlocks, livelocks or any other issues that could affect the soundness property.
+> [!NOTE]
+> Please note that <ins>the process is sound</ins>; indeed there are no deadlocks, livelocks or any other issues that could affect the soundness property.
 
 
 # Milestone 2: Third party services 
@@ -85,6 +86,28 @@ Once experiments are conducted, this service is for the CRD to request in-depth 
 </div>
 <br/>
 
-# Milestone 3: Executable process [➔ PDF](/implementation/docs/pdf_collaboration_executable.pdf)
+# Milestone 3: Executable Process [➔ PDF](/implementation/docs/pdf_collaboration_executable.pdf)
 
 ![executable](/implementation/docs/img_collaboration_executable.png)
+The third milestone focuses on implementing the executable model of the interaction between the Initiator Hospital's Clinical Research Department (CRD) and the Collaborator Hospitals (CH). This executable process is modeled using **Camunda Modeler** and orchestrated by the **Camunda Engine** (specifically Zeebe). It leverages a combination of **RESTful service calls**, **user tasks with forms**, and **service tasks implemented via external workers** to manage the workflow from protocol definition and invitation to experiment execution and result analysis.
+
+
+* **Protocol Management**
+    * The CRD initiates the process by defining a new clinical trial protocol using a **User Task** linked to a specific form (`form_protocol_requirements`).
+    * The "Define trial protocol" task then makes a **REST API call** (`POST` to `/v1/protocols`) to the Protocol and Invitation Management Service [(➔ OpenAPI)](services/protocol-invitation/api-protocol-invitation.yaml) to create the protocol.
+    * The "Delete protocol" task also performs a **REST API call** (`DELETE` to `/v1/protocols/{protocolID}/cancel`) for protocol cancellation, interacting with the same service.
+
+* **Invitation and Participation**
+    * The "Prepare invites" task is a **Service Task** that executes a **REST API call** (`POST` to `/v1/protocols/{protocolID}/invitations`) to the Protocol and Invitation Management Service to generate invitations.
+    * The actual sending of invitations and handling of cancellation notifications (e.g., "Trial cancelled" task) are implemented as **Service Tasks** handled by **Zeebe workers** defined in `clinical_trial_workers.js` (e.g., `Message_trial_cancelled` worker). These workers simulate interactions with external messaging systems.
+    * The process utilizes `intermediate message events` for handling responses from Collaborator Hospitals and a `timer boundary event` (`timer_deadline`) for managing response deadlines.
+
+* **Experiment Execution**
+    * Tasks related to experiment execution of the CH (`phase_3_RETRIEVE`), are all implemented as **Service Tasks** executed by **Zeebe workers**. These workers, found in `clinical_trial_workers.js`, simulate the experimental phases including, leaving visible only the retrieval from the CRD perspective.
+
+* **Data Analysis Request**
+    * The CRD initiates the request for data analysis through the "Prepare analysis request" **User Task**, which is associated with a form (`form_analysis_request`).
+    * A subsequent **Service Task** (inferred) would then trigger a **REST API call** to the Analysis and Publication Management Service (`POST` to `/v1/analyses`) to initiate the data analysis process.
+
+* **Final Pubblication of the Paper**
+    * If the clinical trial is found scientifically relevant from the analysis, the BP proceeds with the pubblication of the paper through the Analysis and Publication Management Service (`POST` to `/v1/publications`).

@@ -1,10 +1,9 @@
 # Third-part Services
 
-We designed two REST services to support the Clinical Research Department (CRD) of the Initiator Hospital (IH) throughout the clinical trial lifecycle. They provide secure, asynchronous interfaces that align with the clinical trial business process.
+We designed two REST services to support the Clinical Research Department (CRD) of the Initiator Hospital (IH) throughout the clinical trial lifecycle. They provide asynchronous interfaces that align with the clinical trial business process.
 Characteristics:
-- **Security**: JWT authentication ensures only authorized CRD personnel can access these functions
-- **Asynchronous processing**: Long-running operations return immediate acknowledgments while processing continues in the background
 - **RESTful interfaces**: Standard HTTP methods and status codes 
+- **Asynchronous processing**: Long-running operations return immediate acknowledgments while processing continues in the background
 
 ## Protocol and Invitation Management Service
 

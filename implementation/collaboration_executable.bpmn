@@ -29,7 +29,6 @@
         <bpmn:flowNodeRef>Activity_1i5j2er</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1mdomkp</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0o56bjw</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0lsa3r8</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1s86l5a</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0gkowoj</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_07wsgt9</bpmn:flowNodeRef>
@@ -43,6 +42,7 @@
         <bpmn:flowNodeRef>Event_0x91buj</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1jsfwl6</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0723638</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0lsa3r8</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="ethical-committee" name="Ethical Committee">
         <bpmn:flowNodeRef>Activity_0xjmfc4</bpmn:flowNodeRef>
@@ -59,7 +59,7 @@
         <zeebe:ioMapping>
           <zeebe:input source="noAuth" target="authentication.type" />
           <zeebe:input source="DELETE" target="method" />
-          <zeebe:input source="=&#34;http://172.18.0.1:8181/v1/protocols/&#34; + protocolID + &#34;/cancel&#34;" target="url" />
+          <zeebe:input source="=&#34;http://localhost:8181/v1/protocols/&#34; + protocolID + &#34;/cancel&#34;" target="url" />
           <zeebe:input source="=false" target="storeResponse" />
           <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
           <zeebe:input source="=20" target="readTimeoutInSeconds" />
@@ -108,7 +108,7 @@
         <zeebe:ioMapping>
           <zeebe:input source="noAuth" target="authentication.type" />
           <zeebe:input source="POST" target="method" />
-          <zeebe:input source="=&#34;http://172.18.0.1:8181/v1/protocols/&#34; + protocolID + &#34;/invitations&#34;" target="url" />
+          <zeebe:input source="=&#34;http://localhost:8181/v1/protocols/&#34; + protocolID + &#34;/invitations&#34;" target="url" />
           <zeebe:input source="=false" target="storeResponse" />
           <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
           <zeebe:input source="=20" target="readTimeoutInSeconds" />
@@ -178,7 +178,7 @@
         <zeebe:ioMapping type="io.camunda:http-json:1">
           <zeebe:input source="noAuth" target="authentication.type" />
           <zeebe:input source="POST" target="method" />
-          <zeebe:input source="http://172.18.0.1:8181/v1/protocols" target="url" />
+          <zeebe:input source="http://localhost:8181/v1/protocols" target="url" />
           <zeebe:input source="=false" target="storeResponse" />
           <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
           <zeebe:input source="=20" target="readTimeoutInSeconds" />
@@ -237,7 +237,7 @@
         <zeebe:ioMapping>
           <zeebe:input source="noAuth" target="authentication.type" />
           <zeebe:input source="DELETE" target="method" />
-          <zeebe:input source="=&#34;http://172.18.0.1:8181/v1/protocols/&#34; + protocolID + &#34;/cancel&#34;" target="url" />
+          <zeebe:input source="=&#34;http://localhost:8181/v1/protocols/&#34; + protocolID + &#34;/cancel&#34;" target="url" />
           <zeebe:input source="=false" target="storeResponse" />
           <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
           <zeebe:input source="=20" target="readTimeoutInSeconds" />
@@ -446,7 +446,7 @@
         <zeebe:ioMapping>
           <zeebe:input source="noAuth" target="authentication.type" />
           <zeebe:input source="POST" target="method" />
-          <zeebe:input source="=&#34;http://172.18.0.1:8181/v1/protocols/&#34; + protocolID + &#34;/finalize&#34;" target="url" />
+          <zeebe:input source="=&#34;http://localhost:8181/v1/protocols/&#34; + protocolID + &#34;/finalize&#34;" target="url" />
           <zeebe:input source="=false" target="storeResponse" />
           <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
           <zeebe:input source="=20" target="readTimeoutInSeconds" />
@@ -592,7 +592,7 @@
         <zeebe:ioMapping>
           <zeebe:input source="noAuth" target="authentication.type" />
           <zeebe:input source="GET" target="method" />
-          <zeebe:input source="=&#34;http://172.18.0.1:8282/v1/analyses/&#34; + analysisID" target="url" />
+          <zeebe:input source="=&#34;http://localhost:8282/v1/analyses/&#34; + analysisID" target="url" />
           <zeebe:input source="=false" target="storeResponse" />
           <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
           <zeebe:input source="=20" target="readTimeoutInSeconds" />
@@ -625,33 +625,6 @@
     </bpmn:userTask>
     <bpmn:dataObjectReference id="DataObjectReference_0qwpc2j" name="pubblication" dataObjectRef="DataObject_1tipl36" />
     <bpmn:dataObject id="DataObject_1tipl36" />
-    <bpmn:serviceTask id="Activity_0lsa3r8" name="Draft the &#10;final paper,&#10;Publish it" zeebe:modelerTemplate="io.camunda.connectors.HttpJson.v2" zeebe:modelerTemplateVersion="11" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE3LjAzMzUgOC45OTk5N0MxNy4wMzM1IDEzLjQ0NzUgMTMuNDI4MSAxNy4wNTI5IDguOTgwNjUgMTcuMDUyOUM0LjUzMzE2IDE3LjA1MjkgMC45Mjc3NjUgMTMuNDQ3NSAwLjkyNzc2NSA4Ljk5OTk3QzAuOTI3NzY1IDQuNTUyNDggNC41MzMxNiAwLjk0NzA4MyA4Ljk4MDY1IDAuOTQ3MDgzQzEzLjQyODEgMC45NDcwODMgMTcuMDMzNSA0LjU1MjQ4IDE3LjAzMzUgOC45OTk5N1oiIGZpbGw9IiM1MDU1NjIiLz4KPHBhdGggZD0iTTQuOTMxMjYgMTQuMTU3MUw2Ljc4MTA2IDMuNzE0NzFIMTAuMTM3NUMxMS4xOTE3IDMuNzE0NzEgMTEuOTgyNCAzLjk4MzIzIDEyLjUwOTUgNC41MjAyN0MxMy4wNDY1IDUuMDQ3MzYgMTMuMzE1IDUuNzMzNTggMTMuMzE1IDYuNTc4OTJDMTMuMzE1IDcuNDQ0MTQgMTMuMDcxNCA4LjE1NTIyIDEyLjU4NDEgOC43MTIxNUMxMi4xMDY3IDkuMjU5MTMgMTEuNDU1MyA5LjYzNzA1IDEwLjYyOTggOS44NDU5TDEyLjA2MTkgMTQuMTU3MUgxMC4zMzE1TDkuMDMzNjQgMTAuMDI0OUg3LjI0MzUxTDYuNTEyNTQgMTQuMTU3MUg0LjkzMTI2Wk03LjQ5NzExIDguNTkyODFIOS4yNDI0OEM5Ljk5ODMyIDguNTkyODEgMTAuNTkwMSA4LjQyMzc0IDExLjAxNzcgOC4wODU2MUMxMS40NTUzIDcuNzM3NTMgMTEuNjc0MSA3LjI2NTEzIDExLjY3NDEgNi42Njg0MkMxMS42NzQxIDYuMTkxMDYgMTEuNTI0OSA1LjgxODExIDExLjIyNjUgNS41NDk1OUMxMC45MjgyIDUuMjcxMTMgMTAuNDU1OCA1LjEzMTkgOS44MDkzNiA1LjEzMTlIOC4xMDg3NEw3LjQ5NzExIDguNTkyODFaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K">
-      <bpmn:extensionElements>
-        <zeebe:taskDefinition type="io.camunda:http-json:1" retries="3" />
-        <zeebe:ioMapping>
-          <zeebe:input source="noAuth" target="authentication.type" />
-          <zeebe:input source="POST" target="method" />
-          <zeebe:input source="http://172.18.0.1:8282/v1/publications" target="url" />
-          <zeebe:input source="=false" target="storeResponse" />
-          <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
-          <zeebe:input source="=20" target="readTimeoutInSeconds" />
-          <zeebe:input source="={&#10;  &#34;analysisId&#34;: form_pubblication_request_ANALYSISID,&#10;  &#34;title&#34;: form_pubblication_request_TITLE,&#10;  &#34;abstract&#34;: form_pubblication_request_ABSTRACT,&#10;  &#34;authors&#34;: form_pubblication_request_AUTHORS,&#10;  &#34;keywords&#34;: form_pubblication_request_KEYWORDS,&#10;  &#34;sectionsLink&#34;: form_pubblication_request_SECTIONSLINK,&#10;  &#34;referencesLink&#34;: form_pubblication_request_REFERENCESLINK,&#10;  &#34;targetJournals&#34;: form_pubblication_request_TARGETJOURNALS&#10;}" target="body" />
-          <zeebe:input source="=false" target="ignoreNullValues" />
-        </zeebe:ioMapping>
-        <zeebe:taskHeaders>
-          <zeebe:header key="elementTemplateVersion" value="11" />
-          <zeebe:header key="elementTemplateId" value="io.camunda.connectors.HttpJson.v2" />
-          <zeebe:header key="retryBackoff" value="PT0S" />
-        </zeebe:taskHeaders>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1wyvujv</bpmn:incoming>
-      <bpmn:outgoing>Flow_1tr26oq</bpmn:outgoing>
-      <bpmn:property id="Property_0cz74eb" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_1e7vebr">
-        <bpmn:sourceRef>DataObjectReference_0qwpc2j</bpmn:sourceRef>
-        <bpmn:targetRef>Property_0cz74eb</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-    </bpmn:serviceTask>
     <bpmn:endEvent id="Event_1s86l5a">
       <bpmn:incoming>Flow_1tr26oq</bpmn:incoming>
     </bpmn:endEvent>
@@ -674,7 +647,7 @@
         <zeebe:ioMapping>
           <zeebe:input source="noAuth" target="authentication.type" />
           <zeebe:input source="POST" target="method" />
-          <zeebe:input source="=&#34;http://172.18.0.1:8282/v1/analyses/&#34;" target="url" />
+          <zeebe:input source="=&#34;http://localhost:8282/v1/protocols/{protocolID}/invitations/&#34;" target="url" />
           <zeebe:input source="=false" target="storeResponse" />
           <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
           <zeebe:input source="=20" target="readTimeoutInSeconds" />
@@ -695,6 +668,33 @@
       <bpmn:dataInputAssociation id="DataInputAssociation_1d1m02j">
         <bpmn:sourceRef>DataObjectReference_12kgjio</bpmn:sourceRef>
         <bpmn:targetRef>Property_1yrhgd7</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_0lsa3r8" name="Draft the &#10;final paper,&#10;Publish it" zeebe:modelerTemplate="io.camunda.connectors.HttpJson.v2" zeebe:modelerTemplateVersion="11" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE3LjAzMzUgOC45OTk5N0MxNy4wMzM1IDEzLjQ0NzUgMTMuNDI4MSAxNy4wNTI5IDguOTgwNjUgMTcuMDUyOUM0LjUzMzE2IDE3LjA1MjkgMC45Mjc3NjUgMTMuNDQ3NSAwLjkyNzc2NSA4Ljk5OTk3QzAuOTI3NzY1IDQuNTUyNDggNC41MzMxNiAwLjk0NzA4MyA4Ljk4MDY1IDAuOTQ3MDgzQzEzLjQyODEgMC45NDcwODMgMTcuMDMzNSA0LjU1MjQ4IDE3LjAzMzUgOC45OTk5N1oiIGZpbGw9IiM1MDU1NjIiLz4KPHBhdGggZD0iTTQuOTMxMjYgMTQuMTU3MUw2Ljc4MTA2IDMuNzE0NzFIMTAuMTM3NUMxMS4xOTE3IDMuNzE0NzEgMTEuOTgyNCAzLjk4MzIzIDEyLjUwOTUgNC41MjAyN0MxMy4wNDY1IDUuMDQ3MzYgMTMuMzE1IDUuNzMzNTggMTMuMzE1IDYuNTc4OTJDMTMuMzE1IDcuNDQ0MTQgMTMuMDcxNCA4LjE1NTIyIDEyLjU4NDEgOC43MTIxNUMxMi4xMDY3IDkuMjU5MTMgMTEuNDU1MyA5LjYzNzA1IDEwLjYyOTggOS44NDU5TDEyLjA2MTkgMTQuMTU3MUgxMC4zMzE1TDkuMDMzNjQgMTAuMDI0OUg3LjI0MzUxTDYuNTEyNTQgMTQuMTU3MUg0LjkzMTI2Wk03LjQ5NzExIDguNTkyODFIOS4yNDI0OEM5Ljk5ODMyIDguNTkyODEgMTAuNTkwMSA4LjQyMzc0IDExLjAxNzcgOC4wODU2MUMxMS40NTUzIDcuNzM3NTMgMTEuNjc0MSA3LjI2NTEzIDExLjY3NDEgNi42Njg0MkMxMS42NzQxIDYuMTkxMDYgMTEuNTI0OSA1LjgxODExIDExLjIyNjUgNS41NDk1OUMxMC45MjgyIDUuMjcxMTMgMTAuNDU1OCA1LjEzMTkgOS44MDkzNiA1LjEzMTlIOC4xMDg3NEw3LjQ5NzExIDguNTkyODFaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="io.camunda:http-json:1" retries="3" />
+        <zeebe:ioMapping>
+          <zeebe:input source="noAuth" target="authentication.type" />
+          <zeebe:input source="POST" target="method" />
+          <zeebe:input source="http://localhost:8282/v1/publications" target="url" />
+          <zeebe:input source="=false" target="storeResponse" />
+          <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
+          <zeebe:input source="=20" target="readTimeoutInSeconds" />
+          <zeebe:input source="={&#10;  &#34;analysisId&#34;: form_pubblication_request_ANALYSISID,&#10;  &#34;title&#34;: form_pubblication_request_TITLE,&#10;  &#34;abstract&#34;: form_pubblication_request_ABSTRACT,&#10;  &#34;authors&#34;: form_pubblication_request_AUTHORS,&#10;  &#34;keywords&#34;: form_pubblication_request_KEYWORDS,&#10;  &#34;sectionsLink&#34;: form_pubblication_request_SECTIONSLINK,&#10;  &#34;referencesLink&#34;: form_pubblication_request_REFERENCESLINK,&#10;  &#34;targetJournals&#34;: form_pubblication_request_TARGETJOURNALS&#10;}" target="body" />
+          <zeebe:input source="=false" target="ignoreNullValues" />
+        </zeebe:ioMapping>
+        <zeebe:taskHeaders>
+          <zeebe:header key="elementTemplateVersion" value="11" />
+          <zeebe:header key="elementTemplateId" value="io.camunda.connectors.HttpJson.v2" />
+          <zeebe:header key="retryBackoff" value="PT0S" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1wyvujv</bpmn:incoming>
+      <bpmn:outgoing>Flow_1tr26oq</bpmn:outgoing>
+      <bpmn:property id="Property_0cz74eb" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1e7vebr">
+        <bpmn:sourceRef>DataObjectReference_0qwpc2j</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0cz74eb</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:serviceTask>
   </bpmn:process>
