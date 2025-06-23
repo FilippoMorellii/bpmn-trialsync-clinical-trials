@@ -1,6 +1,6 @@
 module.exports.funcprotocolsprotocolIdinvitations = function funcprotocolsprotocolIdinvitations(req, res) {
     res.send({
-        invitationsID : "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+        invitationsID : "9c1e2a73-84d2-4b1f-9a6d-4efb3c98e712"
     });
 }
 
