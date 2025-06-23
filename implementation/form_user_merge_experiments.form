@@ -10,7 +10,7 @@
       "id": "Field_1sbsih2"
     },
     {
-      "label": "Task completed",
+      "label": "Experiments data mergerd",
       "type": "checkbox",
       "layout": {
         "row": "Row_1mcbc2k",
@@ -34,7 +34,7 @@
     }
   ],
   "type": "default",
-  "id": "Form_0gg6sdj",
+  "id": "form_user_merge_experiments",
   "executionPlatform": "Camunda Cloud",
   "executionPlatformVersion": "8.6.0",
   "exporter": {

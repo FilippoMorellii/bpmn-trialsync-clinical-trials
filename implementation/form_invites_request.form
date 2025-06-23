@@ -23,7 +23,7 @@
       }
     },
     {
-      "subtype": "date",
+      "subtype": "datetime",
       "dateLabel": "Response deadline",
       "type": "datetime",
       "layout": {
@@ -31,7 +31,53 @@
         "columns": null
       },
       "id": "Field_15idpy3",
-      "key": "form_invites_request_DEADLINE"
+      "key": "form_invites_request_DEADLINE",
+      "timeLabel": "Time",
+      "timeSerializingFormat": "utc_offset",
+      "timeInterval": 15,
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Selected Collaborator Hospitals",
+      "values": [
+        {
+          "label": "Ospedale Gemelli",
+          "value": "Ospedale_Gemelli"
+        },
+        {
+          "label": "Ospedale Cuore",
+          "value": "Ospedale_Cuore"
+        },
+        {
+          "label": "Ospedale Castelli",
+          "value": "Ospedale_Castelli"
+        },
+        {
+          "label": "Ospedale SanRaffaele",
+          "value": "Ospedale_SanRaffaele"
+        },
+        {
+          "label": "Ospedale Humanitas",
+          "value": "Ospedale_Humanitas"
+        },
+        {
+          "label": "Ospedale Niguarda",
+          "value": "Ospedale_Niguarda"
+        }
+      ],
+      "type": "taglist",
+      "layout": {
+        "row": "Row_01guqa9",
+        "columns": null
+      },
+      "id": "Field_07h35g6",
+      "key": "form_hospital_congregation_LIST",
+      "properties": {},
+      "validate": {
+        "required": true
+      }
     }
   ],
   "type": "default",

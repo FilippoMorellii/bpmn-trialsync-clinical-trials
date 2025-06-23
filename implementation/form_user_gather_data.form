@@ -10,7 +10,7 @@
       "id": "Field_0hevtcs"
     },
     {
-      "label": "Task completed",
+      "label": "Gathered data from experiment run",
       "type": "checkbox",
       "layout": {
         "row": "Row_11yrow3",
