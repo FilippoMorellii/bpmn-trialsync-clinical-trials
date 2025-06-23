@@ -34,38 +34,6 @@
       "validate": {
         "required": true
       }
-    },
-    {
-      "label": "Deadline for finalized protocol",
-      "values": [
-        {
-          "label": "1 month",
-          "value": "P1M"
-        },
-        {
-          "label": "1 week",
-          "value": "P1W"
-        },
-        {
-          "label": "1 day",
-          "value": "P1D"
-        },
-        {
-          "label": "Instantaneous (1 second)",
-          "value": "PT1S"
-        }
-      ],
-      "type": "select",
-      "layout": {
-        "row": "Row_0fdk3vp",
-        "columns": null
-      },
-      "id": "Field_1s7bs6t",
-      "key": "form_PHASE_2_DURATION",
-      "defaultValue": "P1W",
-      "validate": {
-        "required": true
-      }
     }
   ],
   "type": "default",

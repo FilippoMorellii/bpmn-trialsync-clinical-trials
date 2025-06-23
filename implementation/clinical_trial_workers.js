@@ -206,6 +206,7 @@ zbc.createWorker({
   taskType: "phase_2_RETRIEVE",
   taskHandler: async (job) => {
     try {
+      await delay(5000);
       const { hospitalId } = job.variables;
       // const invitationId = job.variables[`final_invitation_${hospitalId}_id`]; // legacy
 
@@ -270,6 +271,10 @@ zbc.createWorker({
     }
   },
 });
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 // Shutdown
 process.on("SIGINT", async () => {

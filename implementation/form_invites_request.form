@@ -23,7 +23,7 @@
       }
     },
     {
-      "subtype": "datetime",
+      "subtype": "date",
       "dateLabel": "Response deadline",
       "type": "datetime",
       "layout": {
@@ -32,9 +32,6 @@
       },
       "id": "Field_15idpy3",
       "key": "form_invites_request_DEADLINE",
-      "timeLabel": "Time",
-      "timeSerializingFormat": "utc_offset",
-      "timeInterval": 15,
       "validate": {
         "required": true
       }
