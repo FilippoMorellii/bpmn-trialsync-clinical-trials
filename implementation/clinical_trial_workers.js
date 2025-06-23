@@ -123,7 +123,7 @@ zbc.createWorker({
       // Ritorna le variabili aggiornate
       return job.complete({
         [`invitation_${hospitalId}_sent`]: true,
-        [`invitation_${hospitalId}_id`]: invitaztion.hospitalId + "_" + Date.now(),
+        [`invitation_${hospitalId}_id`]: invitation.hospitalId + "_" + Date.now(),
         [`invitation_${hospitalId}_deadline`]: invitation.deadline,
       });
     } catch (error) {

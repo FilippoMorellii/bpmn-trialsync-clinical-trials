@@ -10,13 +10,27 @@
       "id": "Field_0hevtcs"
     },
     {
-      "label": "Task completed",
+      "label": "Patients recruited",
       "type": "checkbox",
       "layout": {
         "row": "Row_11yrow3",
         "columns": null
       },
       "id": "Field_0gxa198",
+      "key": "form_user_recruit_patients_CHECKBOX",
+      "validate": {
+        "required": true
+      },
+      "properties": {}
+    },
+    {
+      "label": "Experiment ran",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_0ytx7s9",
+        "columns": null
+      },
+      "id": "Field_088xcjz",
       "key": "form_user_run_experiment_CHECKBOX",
       "validate": {
         "required": true
@@ -24,7 +38,7 @@
     }
   ],
   "type": "default",
-  "id": "form_user_run_experiment",
+  "id": "form_user_recruitPatients_runExperiment",
   "executionPlatform": "Camunda Cloud",
   "executionPlatformVersion": "8.6.0",
   "exporter": {

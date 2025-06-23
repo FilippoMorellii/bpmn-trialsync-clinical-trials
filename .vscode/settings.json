@@ -1,0 +1,5 @@
+{
+    "yaml.schemas": {
+        "openapi:v3": "file:///home/gixium/Desktop/PSD/PSD-Project-2025/services/clinical-trial-v0/api.yaml"
+    }
+}
