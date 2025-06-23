@@ -647,7 +647,7 @@
         <zeebe:ioMapping>
           <zeebe:input source="noAuth" target="authentication.type" />
           <zeebe:input source="POST" target="method" />
-          <zeebe:input source="=&#34;http://localhost:8282/v1/protocols/{protocolID}/invitations/&#34;" target="url" />
+          <zeebe:input source="=&#34;http://localhost:8282/v1/analyses/&#34;" target="url" />
           <zeebe:input source="=false" target="storeResponse" />
           <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
           <zeebe:input source="=20" target="readTimeoutInSeconds" />
@@ -1001,10 +1001,6 @@
           <dc:Bounds x="9063" y="443" width="59" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1j24yyy_di" bpmnElement="Activity_0lsa3r8">
-        <dc:Bounds x="9150" y="568" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1s86l5a_di" bpmnElement="Event_1s86l5a">
         <dc:Bounds x="9372" y="590" width="36" height="36" />
       </bpmndi:BPMNShape>
@@ -1013,6 +1009,10 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0hfrver_di" bpmnElement="Activity_0723638">
         <dc:Bounds x="8190" y="568" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1j24yyy_di" bpmnElement="Activity_0lsa3r8">
+        <dc:Bounds x="9150" y="568" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0x91buj_di" bpmnElement="Event_0x91buj">
@@ -1315,13 +1315,13 @@
         <di:waypoint x="9020" y="568" />
         <di:waypoint x="9072" y="515" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_1e7vebr_di" bpmnElement="DataInputAssociation_1e7vebr">
-        <di:waypoint x="9108" y="509" />
-        <di:waypoint x="9163" y="568" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_1d1m02j_di" bpmnElement="DataInputAssociation_1d1m02j">
         <di:waypoint x="8058" y="499" />
         <di:waypoint x="8213" y="568" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1e7vebr_di" bpmnElement="DataInputAssociation_1e7vebr">
+        <di:waypoint x="9108" y="509" />
+        <di:waypoint x="9163" y="568" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
