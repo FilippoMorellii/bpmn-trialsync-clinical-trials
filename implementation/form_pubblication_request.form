@@ -17,16 +17,17 @@
         "columns": null
       },
       "id": "Field_1c18yfk",
-      "key": "form_pubblication_request_ANALYSISID",
+      "key": "analysisID",
       "validate": {
         "required": true
-      }
+      },
+      "readonly": "on"
     },
     {
       "label": "Title",
       "type": "textfield",
       "layout": {
-        "row": "Row_0ztoozg",
+        "row": "Row_18jqt1u",
         "columns": null
       },
       "id": "Field_0epvcex",

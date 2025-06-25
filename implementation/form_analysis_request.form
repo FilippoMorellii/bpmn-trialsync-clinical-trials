@@ -17,16 +17,18 @@
         "columns": null
       },
       "id": "Field_1odtbym",
-      "key": "form_analysis_request_TRIALID",
+      "key": "protocolID",
       "validate": {
         "required": true
-      }
+      },
+      "readonly": "on",
+      "properties": {}
     },
     {
       "label": "Title",
       "type": "textfield",
       "layout": {
-        "row": "Row_10hrmy7",
+        "row": "Row_1bfh6t8",
         "columns": null
       },
       "id": "Field_0425auk",

@@ -404,7 +404,7 @@
     <bpmn:boundaryEvent id="Event_1jsfwl6" name="1 week" attachedToRef="Activity_07wsgt9">
       <bpmn:outgoing>Flow_1nzwu5g</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_1enwrgv">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P1W</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:boundaryEvent>
     <bpmn:sequenceFlow id="Flow_1nzwu5g" sourceRef="Event_1jsfwl6" targetRef="Event_0ufleh4" />
@@ -651,7 +651,7 @@
           <zeebe:input source="=false" target="storeResponse" />
           <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
           <zeebe:input source="=20" target="readTimeoutInSeconds" />
-          <zeebe:input source="={&#10;  &#34;trialId&#34;: form_analysis_request_TRIALID,&#10;  &#34;title&#34;: form_analysis_request_TITLE,&#10;  &#34;experimentsLink&#34;: form_analysis_request_EXPERIMENTSLINK,&#10;  &#34;analysisType&#34;: form_analysis_request_ANALYSISTYPE,&#10;  &#34;description&#34;: form_analysis_request_DESCRIPTION&#10;}" target="body" />
+          <zeebe:input source="={&#10;  &#34;trialId&#34;: protocolID,&#10;  &#34;title&#34;: form_analysis_request_TITLE,&#10;  &#34;experimentsLink&#34;: form_analysis_request_EXPERIMENTSLINK,&#10;  &#34;analysisType&#34;: form_analysis_request_ANALYSISTYPE,&#10;  &#34;description&#34;: form_analysis_request_DESCRIPTION&#10;}" target="body" />
           <zeebe:input source="=false" target="ignoreNullValues" />
         </zeebe:ioMapping>
         <zeebe:taskHeaders>
@@ -680,7 +680,7 @@
           <zeebe:input source="=false" target="storeResponse" />
           <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
           <zeebe:input source="=20" target="readTimeoutInSeconds" />
-          <zeebe:input source="={&#10;  &#34;analysisId&#34;: form_pubblication_request_ANALYSISID,&#10;  &#34;title&#34;: form_pubblication_request_TITLE,&#10;  &#34;abstract&#34;: form_pubblication_request_ABSTRACT,&#10;  &#34;authors&#34;: form_pubblication_request_AUTHORS,&#10;  &#34;keywords&#34;: form_pubblication_request_KEYWORDS,&#10;  &#34;sectionsLink&#34;: form_pubblication_request_SECTIONSLINK,&#10;  &#34;referencesLink&#34;: form_pubblication_request_REFERENCESLINK,&#10;  &#34;targetJournals&#34;: form_pubblication_request_TARGETJOURNALS&#10;}" target="body" />
+          <zeebe:input source="={&#10;  &#34;analysisId&#34;: analysisID,&#10;  &#34;title&#34;: form_pubblication_request_TITLE,&#10;  &#34;abstract&#34;: form_pubblication_request_ABSTRACT,&#10;  &#34;authors&#34;: form_pubblication_request_AUTHORS,&#10;  &#34;keywords&#34;: form_pubblication_request_KEYWORDS,&#10;  &#34;sectionsLink&#34;: form_pubblication_request_SECTIONSLINK,&#10;  &#34;referencesLink&#34;: form_pubblication_request_REFERENCESLINK,&#10;  &#34;targetJournals&#34;: form_pubblication_request_TARGETJOURNALS&#10;}" target="body" />
           <zeebe:input source="=false" target="ignoreNullValues" />
         </zeebe:ioMapping>
         <zeebe:taskHeaders>
