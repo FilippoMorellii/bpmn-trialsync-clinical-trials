@@ -3,8 +3,8 @@ This project aims to model the process of defining and managing a clinical trial
 This project, part of the Process Service Design course at POLIMI, aims to design an efficient and structured system to manage the interactions between these actors and ensure smooth trial execution.
 
 ## Members
-- **<mark>Di Paola Gianluca (C.P. 10797584)</mark>**
-- **<mark>Morelli Filippo (C.P. 10799749)</mark>**
+- **<mark>Di Paola Gianluca</mark>**
+- **<mark>Morelli Filippo</mark>**
 
 # Milestone 1: Choreography, Collaboration
 The BPMN process we have structured involves the management of an experimental study in which two main actors are involved: the **Initiator Hospital (IH)** and the **Collaborator Hospital (CH)**, with the Initiator further divided into two departments: the **Clinical Research Department (CRD)** and the **Ethical Committee (EC)**.
